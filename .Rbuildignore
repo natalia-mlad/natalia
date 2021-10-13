@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^devstuff_history\.R$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
