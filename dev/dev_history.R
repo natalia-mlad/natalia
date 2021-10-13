@@ -28,7 +28,7 @@ library(fs)
 library(usethis)
 library(attachment)
 #create the pkg skeleton:
-path <- fs::path_home("OneDrive/R Functions/natalia")
+path <- fs::path_home("OneDrive/pkgs/natalia")
 usethis::create_package(path)
 dir_create("dev")
 file_create("dev/dev_history.R")
@@ -51,6 +51,7 @@ use_test("placeholder")
 devtools::document()
 devtools::check()
 use_git()
+use_github(private = TRUE)
 git_vaccinate()
 ##
 #citEntry() #create pkg citation
@@ -243,6 +244,21 @@ styler::style_text() #restyles a character vector.
 ##
 # spellcheck for the documentation
 
+
+# extra -------------------------------------------------------------------
+
+usethis::use_make()
+use_logo()
+use_article()
+use_vignette()
+use_addin()
+
+
+# pkgdown -----------------------------------------------------------------
+# Run once to configure package to use pkgdown
+use_pkgdown()
+# Run to build the website
+pkgdown::build_site()
 
 # Extract scripts dependencies and generate your Description file ---------
 
