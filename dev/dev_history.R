@@ -193,11 +193,6 @@ test_that("fbind() binds factor (or character)", {
 })
 test()
 
-# Use git ------------------------------------------------------------
-use_git()
-#Initialising Git repo
-#Adding '.Rproj.user', '.Rhistory', '.Rdata', '.httr-oauth', '.DS_Store' to '.gitignore'
-
 # Testing: -----------------------------------------------------------------
 load_all()
 check()
