@@ -4,9 +4,9 @@
 \name{natalia-package}
 \alias{natalia}
 \alias{natalia-package}
-\title{natalia: What the Package Does (One Line, Title Case)}
+\title{natalia: A Package to Support Natalia in her Data Science Shenanigans}
 \description{
-What the package does (one paragraph).
+Bits & Bobs.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Natalia Mladentseva \email{natashka.ml@gmail.com}
 
 }
 \keyword{internal}
