@@ -28,12 +28,14 @@ library(fs)
 library(usethis)
 library(attachment)
 #create the pkg skeleton:
-path <- fs::path_home("OneDrive/pkgs/natalia")
-usethis::create_package(path)
-dir_create("dev")
-file_create("dev/dev_history.R")
-file_show("dev/dev_history.R")
-usethis::use_build_ignore("dev")
+##
+# path <- fs::path_home("OneDrive/pkgs/natalia")
+# usethis::create_package(path)
+# dir_create("dev")
+# file_create("dev/dev_history.R")
+# file_show("dev/dev_history.R")
+# usethis::use_build_ignore("dev")
+##
 #histry() #saveHistry()
 #configure the necessary options:
 use_roxygen_md()
@@ -59,7 +61,7 @@ git_vaccinate()
 ##
 #Run attachment::att_amend_desc() each time before devtools::check(),
 #this will save you some warnings and errors !
-att_amend_desc()
+attachment::att_amend_desc()
 #att_amend_desc(path = dummypackage, inside_rmd = TRUE)
 ##
 #use_git_config(core.editor = "nano")

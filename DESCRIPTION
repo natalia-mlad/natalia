@@ -12,7 +12,11 @@ BugReports: https://github.com/natalia-mlad/natalia/issues
 Depends: 
     R (>= 2.10)
 Imports: 
-    magrittr
+    corrplot,
+    magrittr,
+    reshape2,
+    rlang,
+    ROCR
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
