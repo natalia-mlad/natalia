@@ -10,8 +10,13 @@ Depends:
     R (>= 2.10)
 Imports: 
     corrplot,
+    dplyr,
+    formattable,
+    kableExtra,
+    lubridate,
     magrittr,
     reshape2,
+    reticulate,
     rlang,
     ROCR
 Suggests: 
