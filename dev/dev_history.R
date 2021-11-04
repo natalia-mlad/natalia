@@ -195,7 +195,7 @@ test_that("fbind() binds factor (or character)", {
 })
 test()
 
-# Testing: -----------------------------------------------------------------
+## Testing:
 load_all()
 check()
 ##
