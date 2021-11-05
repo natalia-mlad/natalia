@@ -18,6 +18,25 @@ This is a good place to demonstrate special features that your template provides
 Finally, be sure to remove this message!
 
 
+
+
+## MY CHILDREN ~~
+
+```{r, child=c('one.Rmd', 'two.Rmd')}
+
+```
+
+```{r, include=FALSE}
+BOSS_MODE <- FALSE
+```
+
+```{r, child=if (!BOSS_MODE) 'appendix.Rmd'}
+```
+
+
+
+## R Declaration Thingy
+
 This version of the book was built with `r R.version.string` and the following packages:
 
 ```{r, echo = FALSE, results="asis"}

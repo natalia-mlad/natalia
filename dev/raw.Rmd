@@ -3,6 +3,13 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-```{r}
+```{r setup}
+#library(tidyverse)
+```
 
+
+
+```{r}
+path = fs::path_dir(rstudioapi::documentPath())
+rstudioapi::filesPaneNavigate(path)
 ```
