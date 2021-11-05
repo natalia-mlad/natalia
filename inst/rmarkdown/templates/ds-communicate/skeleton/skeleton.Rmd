@@ -9,6 +9,21 @@ output: output_format
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+```{r, child='references.Rmd'}
+```
+
+
+## Introduction
+## Method
+## Results
+## Discussion
+## References
+## Appendix
+
+
+
+# NOTES
 ## Adding an RMarkdown Template
 
 This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
@@ -18,13 +33,13 @@ This is a good place to demonstrate special features that your template provides
 Finally, be sure to remove this message!
 
 
-
-
 ## MY CHILDREN ~~
 
 ```{r, child=c('one.Rmd', 'two.Rmd')}
 
 ```
+
+Conditional inclusion
 
 ```{r, include=FALSE}
 BOSS_MODE <- FALSE
@@ -33,6 +48,47 @@ BOSS_MODE <- FALSE
 ```{r, child=if (!BOSS_MODE) 'appendix.Rmd'}
 ```
 
+Alternatively
+
+```{r, echo=FALSE, results='asis'}
+res <- knitr::knit_child('child.Rmd', quiet = TRUE)
+cat(res, sep = '\n')
+```
+
+You can even use a child document as a template, and call knit_child() on it repeatedly with different parameters. In the example below, we run a regression using mpg as the response variable and each of the rest of variables in the mtcars data as the explanatory variable.
+
+```{r, echo=FALSE, results='asis'}
+res <- lapply(setdiff(names(mtcars), 'mpg'), function(x) {
+  knitr::knit_child(text = c(
+    '## Regression on "`r x`"',
+    '',
+    '```{r}',
+    'lm(mpg ~ ., data = mtcars[, c("mpg", x)])',
+    '```',
+    ''
+  ), envir = environment(), quiet = TRUE)
+})
+cat(unlist(res), sep = '\n')
+```
+
+To make the above example self-contained, we used the text argument of knit_child() instead of a file input to pass the R Markdown content to be knitted. You can certainly write the content to a file, and pass a path to knit_child() instead. For example, you can save the content below to a file named template.Rmd:
+
+Regression on "`r x`"
+
+```{r}
+lm(mpg ~ ., data = mtcars[, c("mpg", x)])
+```
+
+And knit the file instead:
+
+```{r}
+res <- lapply(setdiff(names(mtcars), 'mpg'), function(x) {
+  knitr::knit_child(
+    'template.Rmd', envir = environment(), quiet = TRUE
+  )
+})
+cat(unlist(res), sep = '\n')
+```
 
 
 ## R Declaration Thingy
