@@ -4,6 +4,7 @@ Version: 0.0.0.1
 Authors@R: 
     person("Natalia", "Mladentseva", , "natashka.ml@gmail.com", role = c("aut", "cre"))
 Description: Bits & Bobs.
+License: file LICENSE
 URL: https://github.com/natalia-mlad/natalia
 BugReports: https://github.com/natalia-mlad/natalia/issues
 Depends: 
@@ -12,13 +13,16 @@ Imports:
     corrplot,
     dplyr,
     formattable,
+    here,
     kableExtra,
     lubridate,
     magrittr,
     reshape2,
     reticulate,
     rlang,
-    ROCR
+    ROCR,
+    stringr,
+    tinytex
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

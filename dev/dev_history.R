@@ -77,6 +77,8 @@ attachment::att_amend_desc()
 #use_readme_md() #Writing 'README.md'
 #build_readme()
 ##
+use_proprietary_license("Natalia Mladentseva")
+##
 # TODO: use_git()
 ##
 testthat::test_path()
