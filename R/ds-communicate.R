@@ -1,15 +1,10 @@
-# ---
-# knit: ( function(input, ...){
-#         rmarkdown::render(input)
-#
-#         make_article(
-#           paste0(xfun::sans_ext(input), '.tex')
-#           )
-#         }
-#       )
-# title: The Blah Blah Blha
-# ---
 
+#' Make Article from Chapter
+#'
+#' @param chapter chapter
+#'
+#' @export
+#'
 make_article <- function(chapter){
 
   text <- readLines(here::here(chapter)) %>%
@@ -29,4 +24,19 @@ make_article <- function(chapter){
 
   # compile tex
   tinytex::xelatex(article)
+
+  # YAML: ####
+
+  # ---
+  # knit: ( function(input, ...){
+  #         rmarkdown::render(input)
+  #
+  #         make_article(
+  #           paste0(xfun::sans_ext(input), '.tex')
+  #           )
+  #         }
+  #       )
+  # title: The Blah Blah Blha
+  # ---
+
 }

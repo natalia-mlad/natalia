@@ -109,9 +109,9 @@ use_test("my-test")
 #Writing 'tests/testthat/test-my-test.R'
 #Edit 'tests/testthat/test-my-test.R'
 
-x <- 1
-y <- 2
-use_data(x, y) #If the DESCRIPTION contains LazyData: true, then datasets will be lazily loaded. This means that they won’t occupy any memory until you use them.
+example_x <- 1
+example_y <- 2
+use_data(example_x, example_y) #If the DESCRIPTION contains LazyData: true, then datasets will be lazily loaded. This means that they won’t occupy any memory until you use them.
 
 #Adding 'R' to Depends field in DESCRIPTION
 #Creating 'data/'

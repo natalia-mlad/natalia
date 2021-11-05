@@ -10,11 +10,15 @@ BugReports: https://github.com/natalia-mlad/natalia/issues
 Depends: 
     R (>= 2.10)
 Imports: 
+    assertr,
+    CodeDepends,
     corrplot,
     dplyr,
     formattable,
+    fs,
     here,
     kableExtra,
+    knitr,
     lubridate,
     magrittr,
     reshape2,
@@ -22,6 +26,9 @@ Imports:
     rlang,
     ROCR,
     stringr,
+    tarchetypes,
+    targets,
+    tidyverse,
     tinytex
 Suggests: 
     testthat (>= 3.0.0)
