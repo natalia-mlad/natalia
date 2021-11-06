@@ -23,6 +23,7 @@ Imports:
     lubridate,
     magrittr,
     qdap,
+    quanteda,
     reshape2,
     reticulate,
     rlang,
@@ -30,6 +31,7 @@ Imports:
     stringr,
     tarchetypes,
     targets,
+    textreadr,
     tidyverse,
     tinytex,
     tm

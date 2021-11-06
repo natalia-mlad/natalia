@@ -11,6 +11,13 @@
 # library(udpipe)
 #library(spacyr)
 
+# Test:
+# path = path_home(
+#   "OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/02 - Study 1b - Qualitative Interviews/05 - Transcription/"
+# )
+# txt = import.docx.text(path = path)
+# create.nlp.tokens(txt = txt)
+
 # 1. Importing ------------------------------------------------------------
 #' import.docx.text
 #'
@@ -18,11 +25,13 @@
 #' @export
 import.docx.text <- function(path){
   filenames <- list.files(path = path, pattern = "*.docx", full.names = T)
-  txt <- lapply(filenames, function(x) read_docx(x))
+  txt <- lapply(filenames, function(x) textreadr::read_docx(x))
+  #map(filenames, ~textreadr::read_docx(.x))
   txt2 <- as.character(txt)
-  txt2 <- corpus(txt2)
+  #txt2 <- quanteda::corpus(txt2)
   return(txt2)
 }
+
 
 # 2. Pre-Processing -------------------------------------------------------
 #' quick.preprocess
