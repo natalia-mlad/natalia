@@ -1,4 +1,8 @@
 
+
+
+# Convert Chapters to Articles --------------------------------------------
+
 #' Make Article from Chapter
 #'
 #' @param chapter chapter

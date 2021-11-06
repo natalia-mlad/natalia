@@ -9,6 +9,15 @@ output: output_format
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Large amount of code? No worries! Source an external script!
+(Pro: source code is hidden by default)
+
+```{r, include=FALSE}
+source("your-script.R", local = knitr::knit_global())
+# or sys.source("your-script.R", envir = knitr::knit_global())
+```
+
+
 
 ```{r, child='references.Rmd'}
 ```
@@ -47,6 +56,11 @@ BOSS_MODE <- FALSE
 
 ```{r, child=if (!BOSS_MODE) 'appendix.Rmd'}
 ```
+
+```{r, child = if (winner == 'brazil') 'brazil.Rmd' else 'germany.Rmd'}
+```
+
+
 
 Alternatively
 
