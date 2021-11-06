@@ -11,6 +11,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     assertr,
+    cleanNLP,
     CodeDepends,
     corrplot,
     dplyr,
@@ -21,6 +22,7 @@ Imports:
     knitr,
     lubridate,
     magrittr,
+    qdap,
     reshape2,
     reticulate,
     rlang,
@@ -29,7 +31,8 @@ Imports:
     tarchetypes,
     targets,
     tidyverse,
-    tinytex
+    tinytex,
+    tm
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
