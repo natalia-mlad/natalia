@@ -121,3 +121,32 @@ create.nlp.tokens <- function(txt, text_name = "texts") {
 #   group_by(token) %>%
 #   summarise(n = n()) %>%
 #   arrange(desc(n))
+
+pdf_text_extract <- function(path) {
+  x <- pdftools::pdf_text(path)
+  line_nums <- cumsum(lapply(tokenizers::tokenize_lines(x), length))
+  if (any(line_nums == 0)) {
+    warning("text not recognized in pdf")
+    return(line_nums)
+  }
+  x_lines <- unlist(stringi::stri_split_lines(x))
+  x_lines <- gsub("^\\s+|\\s+$", "", x_lines)
+  x_lines <- pdfsearch:::remove_hyphen(x_lines)
+  return(x_lines)
+}
+#
+# pdf_text_extract(path) %>% as_tibble() %>%
+# group_by(value) %>% summarise(n = n()) %>% arrange(desc(n))
+##
+# text <- paste(x_lines, collapse = " ")
+# out <- list(line_nums = line_nums,
+#             text_lines = x_lines,
+#             full_text = text)
+# return(out)
+###
+# #head(x_lines, 20) #length(x_lines) == 1
+#x_lines <- unlist(stringi::stri_split_boundaries(x_lines, type = "sentence"))
+###
+# keyword = "history"
+# keyword_line_loc <- lapply(seq_along(keyword), function(xx) grep(keyword[xx], x_lines, ignore.case = TRUE, perl = TRUE))
+# (keyword_line <- unlist(keyword_line_loc))

@@ -10,31 +10,40 @@ BugReports: https://github.com/natalia-mlad/natalia/issues
 Depends: 
     R (>= 2.10)
 Imports: 
+    archive,
     assertr,
     cleanNLP,
+    cli,
     CodeDepends,
     corrplot,
+    crayon,
+    digest,
     dplyr,
     formattable,
     fs,
     here,
+    janitor,
     kableExtra,
     knitr,
     lubridate,
     magrittr,
+    pdfsearch,
+    pdftools,
+    purrr,
     qdap,
-    quanteda,
     reshape2,
     reticulate,
     rlang,
     ROCR,
+    stringi,
     stringr,
     tarchetypes,
     targets,
     textreadr,
     tidyverse,
     tinytex,
-    tm
+    tm,
+    tokenizers
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
