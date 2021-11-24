@@ -98,7 +98,6 @@ identify_duplicates <- function(my_dir, glob, algo = "xxhash64", excluded_dir = 
 #' @return a list
 #' @export
 #'
-#' @examples
 remove_duplicates <- function(df, bad_dir, auto_remove = FALSE) {
   stopifnot(is.character(bad_dir))
   stopifnot(length(bad_dir) == 1)

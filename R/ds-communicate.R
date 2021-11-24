@@ -1,4 +1,23 @@
-
+#' create.summary.table
+#'
+#' @param df dataframe
+#' @param qs a character vector of labels to replace the column names with as necessary
+#'
+#' @return a pretty tabyl
+#' @export
+#'
+create.summary.table <- function(df, qs) {
+  new.names <- qs
+  summary.table <- df %>% map(~ tabyl(.x))
+  for(i in 1:length(summary.table)) {
+    names(summary.table[[i]])[1] <- new.names[i]
+  }
+  out <-
+    summary.table %>%
+    adorn_totals("row") %>%
+    adorn_pct_formatting(digits = 2, rounding = "half up")
+  return(out)
+}
 
 
 # Convert Chapters to Articles --------------------------------------------
