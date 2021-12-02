@@ -38,6 +38,7 @@ Imports:
     reticulate,
     rlang,
     ROCR,
+    rvest,
     stringi,
     stringr,
     tarchetypes,

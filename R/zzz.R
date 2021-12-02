@@ -60,3 +60,12 @@
 #'   setHook(packageEvent("plyr", "attach"), NULL, "replace")
 #' }
 #'
+
+##
+# .onLoad <- function(...) {
+#   holding <- suffix_load()
+#   assign("is_wildcard", holding$is_wildcard, envir = urltools_env)
+#   assign("cleaned_suffixes", holding$cleaned_suffixes, envir = urltools_env)
+#   assign("suff_trie", holding$suff_trie, envir = urltools_env)
+# }
+##

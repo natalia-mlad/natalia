@@ -1,3 +1,18 @@
+#' my_env
+#'
+#' @param type type e.g., is.data.frame, is.character,
+my_env <- function(type = NULL) {
+  if (is.null(type)) {
+    #TODO: how to make sure it actually works in my environmnent and
+    #not the functions env....
+    ls.str()
+  } else {
+    stopifnot(is.character(type))
+    # TODO; make sure it's formatted so: is.data.frame, is.character,
+    names(Filter(type, mget(ls(all = T))))
+  }
+}
+
 #' nCores
 #' @export
 #'
