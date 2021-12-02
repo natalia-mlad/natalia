@@ -66,15 +66,41 @@ is.count <- function(x, tol = .Machine$double.eps^0.5) {
 }
 
 
-#' identify.redundant.ids
+#' Identify Redundant ID Columns in a Dataset
+#'
+#' Great for real-life business data where the dataset comes from database where there are
+#' a lot of ids/keys being used alongside character explanation of the said key.
+#' Thus, most of the time it's completely irrelevant column clutter to you as a data-scientist
+#' and you want it gone easliy. E.g., 'ApplicationStatusPrimaryID' & 'ApplicationStatusPrimary'
+#' in the vwApps dataset ("03 - Oakam Work/vwApps-from-2007-05-to-2021-05.RData") are redundant
+#' in such a way. The numeric id column then gets flagged for removal. The character similarity
+#' between the column names and subsequent 'nesting test' control which columns are identified
+#' as redundant.
+#'
+#' I know it's a pretty specific pattern to identify, but it's quite handy for me. For the vwApps
+#' dataset, for example, 9% of the columns (out of 68) gets removed in such a way.
+#'
+#' @param data the data.frame/tibble
+#'
+#' @param char.dist numeric. The maximum distance allowed between column names for them to
+#' be considered as candidates for redundant ids. The character distance is
+#' calculated by the adist function (cases ignored and using bytes). The default value of 4
+#' seems about right since it will match column names StpId' & 'UserId' (adist = 4), and
+#' 'ProviderTypeID' & 'ProviderType' (adist = 2), but not 'Name' & 'Salary' or
+#' 'ApplicationKey' & ApplicationMonth' which both have the character adist value of 5.
+#'
+#' @returns character vector of names of the redundant id columns to remove from the dataset
+#'
 #' @export
-identify.redundant.ids <- function(data, char.dist = 4) {
+#'
+identify_redundant_ids <- function(data, char.dist = 4) {
   data <- janitor::remove_constant(data, quiet = F)
   x <- data %>% keep(is.numeric) %>% names()
-  y <- names(data)[names(data) %notin% x]
+  y <- names(data)[!(names(data) %in% x)]
+  # y <- names(data)[names(data) %notin% x]
   combin_mat <- expand.grid(ids = x, factors = y, stringsAsFactors = F) %>%
     mutate(dist = adist(ids, factors, ignore.case = T, useBytes = T) %>% diag()) %>%
-    filter(dist < char.dist)
+    filter(dist <= char.dist)
   combin_mat %>%
     mutate(is_nested = map2_lgl(combin_mat$ids, combin_mat$factors, function(x, y) {
       if(length(unique(data[, x])) == 1) return(NA)
