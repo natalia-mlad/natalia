@@ -20,6 +20,8 @@
 
 # Import From -------------------------------------------------------------
 # sinew::makeImport()
+att_from_description()
+att_from_description() %>% find_remotes()
 
 
 
