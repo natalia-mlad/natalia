@@ -14,8 +14,8 @@ cor_cor <- function(x1, y, x2 = NULL, prop = .67) {
   s <- sample(nrow(x1), prop * nrow(x1))
   x1 <- sapply(x1, scale)
   x2 <- sapply(x2, scale)
-  (x2[-s, ] %*% cor(x1[s, ], y[s])) %>%
-    cor(y[-s])
+  (x2[-s, ] %*% stats::cor(x1[s, ], y[s])) %>%
+    stats::cor(y[-s])
 }
 
 #' @title Function to create and validate elastic net prediction models
@@ -35,8 +35,8 @@ glmnet_cor <- function(x1, y, x2 = NULL, prop = .67, alpha = .05, lambda.type = 
   x1 <- sapply(x1, scale)
   x2 <- sapply(x2, scale)
   cv.glmnet(x1[s, ], y[s], alpha = alpha) %>%
-    predict(x2[-s, ], s = lambda.type) %>%
-    cor(y[-s])
+    stats::predict(x2[-s, ], s = lambda.type) %>%
+    stats::cor(y[-s])
 }
 
 #' foo1
@@ -52,8 +52,8 @@ foo1 = function(x1, y, x2 = NULL, p = 0.67) {
   x1 = sapply(x1, scale)
   x2 = sapply(x2, scale)
   cv.glmnet(x1[s,], y[s], alpha = 0.05) %>%
-    predict(x2[-s,], s = "lambda.min") %>%
-    cor(y[-s])
+    stats::predict(x2[-s,], s = "lambda.min") %>%
+    stats::cor(y[-s])
 }
 
 # Work in Progress --------------------------------------------------------
@@ -76,7 +76,7 @@ my.lasso.function <- function(data, x, y, nrep = 100, family = "gaussian",
   data <- data
   y <- data[[y]] #y <- data$`CanDo-Beliefs1`
   #starts_with("CanDo.1.Scale")
-  x <- model.matrix(data$`CanDo-Beliefs1` ~
+  x <- stats::model.matrix(data$`CanDo-Beliefs1` ~
                       data$`CanDo.1.Scale_Very confident` +
                       data$CanDo.1.Scale_Confident +
                       data$`CanDo.1.Scale_Somewhat confident` +
@@ -104,9 +104,9 @@ my.lasso.function <- function(data, x, y, nrep = 100, family = "gaussian",
   }
 
   # output ####
-  out2 <- round(predict(fit, exact = T, type = 'coefficients'), 4)
-  pred <- predict(fit, s = lambda.min, x)
-  out3 <- cor.test(pred, y, method = "pearson")
+  out2 <- round(stats::predict(fit, exact = T, type = 'coefficients'), 4)
+  pred <- stats::predict(fit, s = lambda.min, x)
+  out3 <- stats::cor.test(pred, y, method = "pearson")
 
   # some stats:
   SSE = sum((pred - y)^2)

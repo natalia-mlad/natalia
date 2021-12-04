@@ -12,7 +12,7 @@ wiki_grab_links(url, keep_duplicates = FALSE)
 \item{keep_duplicates}{logical.}
 }
 \value{
-
+a character vector
 }
 \description{
 grab_wiki_links

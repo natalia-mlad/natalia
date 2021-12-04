@@ -3,11 +3,11 @@ natalia_use_r <- function(name = NULL, open = rlang::is_interactive()) {
   name <- gsub("^test-", "", name)
   name <- slug(name, "R")
   check_file_name(name)
-  use_directory("R")
-  edit_file(proj_path("R", name), open = open)
-  test_path <- proj_path("tests", "testthat", paste0("test-", name, ".R"))
+  usethis::use_directory("R")
+  usethis::edit_file(usethis::proj_path("R", name), open = open)
+  test_path <- usethis::proj_path("tests", "testthat", paste0("test-", name, ".R"))
   if (!file_exists(test_path)) {
-    ui_todo("Call {ui_code('use_test()')} to create a matching test file")
+    usethis::ui_todo("Call {usethis::ui_code('use_test()')} to create a matching test file")
   }
   invisible(TRUE)
 }

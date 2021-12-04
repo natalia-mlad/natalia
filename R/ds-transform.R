@@ -119,7 +119,7 @@ change.range <- function (object, new_data, ...) {
 #' Test.Nest
 #' @export
 test.nest <- function(x, y) {
-  M <- xtabs(~ x + y, sparse = T)
+  M <- stats::xtabs(~ x + y, sparse = T)
   result <- all(Matrix::colSums(M > 0) == 1L)
   if (result == TRUE) {
     print(paste(deparse(substitute(y)),
@@ -145,7 +145,7 @@ test.nest <- function(x, y) {
 #' @export
 #'
 spearman_brown <- function(df, items, name = "", SB_only = FALSE) {
-  cor_value <- cor.test(magrittr::extract2(df, items[1]), magrittr::extract2(df, items[2]), na.rm = T)$estimate
+  cor_value <- stats::cor.test(magrittr::extract2(df, items[1]), magrittr::extract2(df, items[2]), na.rm = T)$estimate
   SB_value <- (abs(cor_value) * 2)/(1 + abs(cor_value))
   if (SB_only) {
     return(SB_value)
@@ -157,9 +157,9 @@ spearman_brown <- function(df, items, name = "", SB_only = FALSE) {
 #' t-test
 ttest <- function(n, loc, scale) {
   # generate sample:
-  sample <- rnorm(n, loc, scale)
+  sample <- stats::rnorm(n, loc, scale)
   # calculate test statistic:
-  stat <- sqrt(n) * mean(sample) / sd(sample)
+  stat <- sqrt(n) * mean(sample) / stats::sd(sample)
   # get test decision:
   decision <- abs(stat) > 1.96
   # return result:
@@ -346,11 +346,11 @@ fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
 #' }
 #'
 simulate_data_continuous <- function() {
-  alpha <- rnorm(1, 0, 1)
-  beta <- rnorm(1, 0, 1)
+  alpha <- stats::rnorm(1, 0, 1)
+  beta <- stats::rnorm(1, 0, 1)
   sigma <- rhcauchy(1, 1)
-  x <- rnorm(100, 1, 1) # continuous covariate
-  y <- rnorm(100, alpha + x * beta, sigma)
+  x <- stats::rnorm(100, 1, 1) # continuous covariate
+  y <- stats::rnorm(100, alpha + x * beta, sigma)
   sim <- basename(tempfile(pattern = "sim"))
   tibble(x = x, y = y, beta_true = beta, sim = sim)
 }
@@ -369,11 +369,11 @@ simulate_data_continuous <- function() {
 #' }
 #'
 simulate_data_discrete <- function() {
-  alpha <- rnorm(1, 0, 1)
-  beta <- rnorm(1, 0, 1)
+  alpha <- stats::rnorm(1, 0, 1)
+  beta <- stats::rnorm(1, 0, 1)
   sigma <- rhcauchy(1, 1)
-  x <- rbinom(100, 1, 0.5) # discrete covariate
-  y <- rnorm(100, alpha + x * beta, sigma)
+  x <- stats::rbinom(100, 1, 0.5) # discrete covariate
+  y <- stats::rnorm(100, alpha + x * beta, sigma)
   sim <- basename(tempfile(pattern = "sim"))
   tibble(x = x, y = y, beta_true = beta, sim = sim)
 }
@@ -474,7 +474,7 @@ get_poly <- function(xdata = NULL, deg=1, maxInteractDeg = deg,
       warning("P > N. With polynomial terms and interactions, P is ",
               length(features))
 
-    model_formula <- as.formula(paste0(y_name, " ~ ",
+    model_formula <- stats::as.formula(paste0(y_name, " ~ ",
                                        ifelse(intercept, "", "-1 +"),
                                        paste(features, collapse=" + ")))
 

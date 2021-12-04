@@ -8,7 +8,12 @@
 #' @importFrom stringr str_remove_all
 #' @importFrom stringr str_replace
 #' @importFrom stringr str_subset
+#' @importFrom utils adist
+#' @importFrom utils ls.str
+#' @importFrom utils sessionInfo
+#' @importFrom utils write.table
 ## usethis namespace: end
+#' @import janitor
 #' @import dplyr
 #' @import purrr
 #' @import tibble

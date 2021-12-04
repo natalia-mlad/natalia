@@ -19,7 +19,9 @@ Imports:
     stringr,
     magrittr,
     rvest,
-    archive
+    archive,
+    utils,
+    stats
 Suggests: 
     testthat (>= 3.0.0),
     assertr,
@@ -32,6 +34,7 @@ Suggests:
     digest,
     formattable,
     here,
+    flextable,
     kableExtra,
     knitr,
     lubridate,
@@ -50,7 +53,8 @@ Suggests:
     textreadr,
     tinytex,
     tm,
-    tokenizers
+    tokenizers,
+    usethis
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true

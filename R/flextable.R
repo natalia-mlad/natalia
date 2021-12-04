@@ -23,15 +23,15 @@ theme_apa <- function(x, size = 10) {
     stop("this theme supports only flextable objects.")
   }
 
-  x <- align(x, align = "center", part = "all")
+  x <- flextable::align(x, align = "center", part = "all")
 
   # font:
-  x <- fontsize(x, size = size, part = "all")
-  x <- font(x, fontname = "Times New Roman", part = "all")
-  x <- bold(x, bold = TRUE, part = "header")
+  x <- flextable::fontsize(x, size = size, part = "all")
+  x <- flextable::font(x, fontname = "Times New Roman", part = "all")
+  x <- flextable::bold(x, bold = TRUE, part = "header")
 
   # colour:
-  x <- color(x, color = "black", part = "all")
+  x <- flextable::color(x, color = "black", part = "all")
   # x <- bg(x, bg = "#475f77", part = "body")
   # x <- bg(x, bg = "#eb5555", part = "header")
   # x <- bg(x, bg = "#1bbbda", part = "footer")
@@ -40,20 +40,20 @@ theme_apa <- function(x, size = 10) {
   # x <- padding(x, padding = 6, part = "all")
 
   # border:
-  std_border <- fp_border_default(width = 0.5, color = "black")
-  x <- border_remove(x)
+  std_border <- flextable::fp_border_default(width = 0.5, color = "black")
+  x <- flextable::border_remove(x)
 
-  x <- hline_top(x, border = std_border, part = "header")
-  x <- hline_bottom(x, border = std_border, part = "header")
-  x <- hline_bottom(x, border = std_border, part = "body")
+  x <- flextable::hline_top(x, border = std_border, part = "header")
+  x <- flextable::hline_bottom(x, border = std_border, part = "header")
+  x <- flextable::hline_bottom(x, border = std_border, part = "body")
   # x <- border_outer(x, part = "all", border = std_border )
   # x <- border_inner_h(x, border = std_border, part="all")
   # x <- border_inner_v(x, border = std_border, part="all")
   # x <- fix_border_issues(x)
 
   # properties:
-  x <- autofit(x)
-  x <- set_table_properties(x, layout = "autofit")
+  x <- flextable::autofit(x)
+  x <- flextable::set_table_properties(x, layout = "autofit")
   # layout = "fixed"
 
   # RETURN: ----

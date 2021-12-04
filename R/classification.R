@@ -1,8 +1,7 @@
 #' rocplot
 #' @export
 rocplot <- function(pred, truth, ...) {
-  require(ROCR)
-  predob = prediction(pred, truth)
-  perf = performance(predob, "tpr", "fpr")
-  plot(perf, ...)
+  predob = ROCR::prediction(pred, truth)
+  perf = ROCR::performance(predob, "tpr", "fpr")
+  ROCR::plot(perf, ...)
 }

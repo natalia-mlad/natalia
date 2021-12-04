@@ -18,6 +18,8 @@
 ###
 
 # Import From -------------------------------------------------------------
+library(origin)
+
 automagic::get_dependent_packages("R")
 
 originize_file("R/ds-communicate.R")
@@ -25,16 +27,29 @@ originize_dir("R", pkgs = "CodeDepends")
 originize_dir("R", pkgs = "tidyr")
 
 # installed.packages()[,1]
-originize_file("R/flextable.R")
-
+originize_file("R/flextable.R", pkgs = "flextable")
+#
 
 # use_import_from("fs", "dir_info")
 use_import_from("stringr", c("str_detect", "str_remove_all", "str_replace"))
 use_import_from("archive", "archive")
-
+use_import_from("utils", c("adist", "ls.str", "sessionInfo", "write.table"))
 
 # sinew::makeImport()
-att_from_description()
+(desc = sort(att_from_description()))
+(rscripts = sort(att_from_rscripts()))
+setdiff(desc, rscripts)
+setdiff(rscripts, desc)
+##
+
+pkgs <- unique(c(desc, rscripts, .packages())) %>%
+  str_subset(c("stringr|dplyr|tidyr|purrr|tibble|fs"), negate = T)
+
+originize_dir("R", pkgs = pkgs)
+
+originize_dir("R", pkgs = "stats", add_base_packages = T)
+
+
 att_from_description() %>% find_remotes()
 
 

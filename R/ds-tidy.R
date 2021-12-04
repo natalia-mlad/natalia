@@ -105,7 +105,7 @@ identify_redundant_ids <- function(data, char.dist = 4) {
     mutate(is_nested = map2_lgl(combin_mat$ids, combin_mat$factors, function(x, y) {
       if(length(unique(data[, x])) == 1) return(NA)
       if(length(unique(data[, y])) == 1) return(NA)
-      M <- xtabs(~ data[, x] + data[, y], sparse = T)
+      M <- stats::xtabs(~ data[, x] + data[, y], sparse = T)
       all(Matrix::colSums(M > 0) == 1L)
       #is_nested <- all(Matrix::colSums(M > 0) == 1L)
       # if(is_nested == FALSE & all(Matrix::rowSums(M > 0) == 1L) == TRUE) {

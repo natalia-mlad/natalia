@@ -40,15 +40,15 @@ import.docx.text <- function(path){
 #'
 #' @export
 quick.preprocess <- function(txt) {
-  require(qdap) #textclean
+  # require(qdap) #textclean
   # Pre-Processing:
   #txt2 <- tm_map(txt, tolower)
-  txt2 <- replace_symbol(txt)
-  txt2 <- replace_contraction(txt2) #*
-  txt2 <- replace_number(txt2)
-  txt2 <- replace_abbreviation(txt2)
+  txt2 <- qdap::replace_symbol(txt)
+  txt2 <- qdap::replace_contraction(txt2) #*
+  txt2 <- qdap::replace_number(txt2)
+  txt2 <- qdap::replace_abbreviation(txt2)
   txt2 <- tolower(txt2)
-  txt2 <- removePunctuation(txt2, ucp = T)
+  txt2 <- tm::removePunctuation(txt2, ucp = T)
   #preserve_intra_word_dashes = T
   return(txt2)
 }
@@ -61,12 +61,12 @@ quick.preprocess <- function(txt) {
 #'
 #' @export
 create.dtm <- function(txt) {
-  require(tm)
+  # require(tm)
   #VCorpus()
   #corpus <- Corpus(VectorSource(txt.char))
-  corpus <- Corpus(VectorSource(txt))
+  corpus <- tm::Corpus(tm::VectorSource(txt))
   #summary(corpus)
-  dtm <- DocumentTermMatrix(corpus, control = list(stopwords = T, stemming = T))
+  dtm <- tm::DocumentTermMatrix(corpus, control = list(stopwords = T, stemming = T))
   return(dtm)
 }
 
@@ -80,12 +80,12 @@ create.dtm <- function(txt) {
 create.nlp.tokens <- function(txt, text_name = "texts") {
   #check txt is a corpus
 
-  require(cleanNLP)
+  # require(cleanNLP)
   #use_python("C:/Work/Programs/Anaconda3/python.exe", required=TRUE)
   #cnlp_download_corenlp(lang = "en")
-  cnlp_init_udpipe()
+  cleanNLP::cnlp_init_udpipe()
 
-  x <- cnlp_annotate(txt$documents, text_name = text_name)
+  x <- cleanNLP::cnlp_annotate(txt$documents, text_name = text_name)
   #x$token
   # A tibble: 639,233 x 11
   #x$document

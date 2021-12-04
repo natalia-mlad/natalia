@@ -2,7 +2,7 @@
 #' @export
 fold_incr <- function(split, ...) {
   dat <- analysis(split)
-  quants <- quantile(dat$VO2, probs = c(.1, .9))
+  quants <- stats::quantile(dat$VO2, probs = c(.1, .9))
   tibble(
     term = "fold increase",
     estimate = unname(quants[2]/quants[1]),
@@ -15,12 +15,12 @@ fold_incr <- function(split, ...) {
 #' @export
 fit_fun <- function(split, ...) {
   # We could check for convergence, make new parameters, etc.
-  nls(nonlin_form, data = analysis(split), ...) %>%
+  stats::nls(nonlin_form, data = analysis(split), ...) %>%
     tidy()
 }
 
 #' corr.boot
 #' @export
 corr.boot <- function(data, i) {
-  cor(data10[i, "V1"], data10[i, "V2"], method='pearson')
+  stats::cor(data10[i, "V1"], data10[i, "V2"], method='pearson')
 }

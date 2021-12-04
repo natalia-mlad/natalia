@@ -10,9 +10,6 @@ python_df(pydf)
 \arguments{
 \item{pydf}{a python dataframe}
 }
-\value{
-
-}
 \description{
 Takes in an unconverted pandas.DataFrame via \code{reticulate::py_eval} and returns
 an R data.frame that has the look of a pandas.DataFrame

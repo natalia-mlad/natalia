@@ -125,8 +125,7 @@ code.converter <- function(script_path, ...) {
 
   out3 <- CodeDepends::getDetailedTimelines(info = cd) %>% split(.$var) %>%
     map( ~ .x[which(.x$used == T & .x$defined == F), ]) %>%
-    map( ~ src[.x[, 1]] %>% paste()) %>%
-    View()
+    map( ~ src[.x[, 1]] %>% paste()) #%>% View()
 
   out4 <- names(unlist(lapply(cd, slot, name = "functions"))) %>% unique()
   unlist(lapply(cd, slot, name = "functions")) %>%
