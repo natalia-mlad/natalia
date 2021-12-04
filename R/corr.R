@@ -25,6 +25,8 @@ flat_cor_mat <- function(cor_r, cor_p){
 }
 
 #' corr_simple
+#' @param data df
+#' @param sig numeric
 #' @export
 corr_simple <- function(data = df, sig = 0.5) {
   #convert data to numeric in order to run correlations

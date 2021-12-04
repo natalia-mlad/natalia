@@ -33,6 +33,8 @@ Suggests:
     corrplot,
     crayon,
     digest,
+    igraph,
+    glmnet,
     formattable,
     here,
     flextable,

@@ -56,7 +56,7 @@ code.converter <- function(script_path, ...) {
 
   raw <- readLines(script)
   comments <- str_subset(raw, "#")
-  report1 <- raw[raw %notin% code]
+  report1 <- raw[!(raw %in% code)]
   report2 <- CodeDepends::getDetailedTimelines(info = cd) %>%
     group_by(step) %>%
     summarise(n.used = sum(used), n.defined = sum(defined)) %>%

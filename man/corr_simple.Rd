@@ -6,6 +6,11 @@
 \usage{
 corr_simple(data = df, sig = 0.5)
 }
+\arguments{
+\item{data}{df}
+
+\item{sig}{numeric}
+}
 \description{
 corr_simple
 }

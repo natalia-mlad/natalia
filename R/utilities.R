@@ -1,5 +1,4 @@
-#' notin
-`%notin%` <- Negate(`%in%`)
+# notin `%notin%` <- Negate(`%in%`)
 
 #' my_env
 #' @param type type e.g., is.data.frame, is.character,

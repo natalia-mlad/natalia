@@ -161,6 +161,10 @@ spearman_brown <- function(df, items, name = "", SB_only = FALSE) {
 }
 
 #' t-test
+#'
+#' @param n n
+#' @param loc loc
+#' @param scale scale
 ttest <- function(n, loc, scale) {
   # generate sample:
   sample <- stats::rnorm(n, loc, scale)

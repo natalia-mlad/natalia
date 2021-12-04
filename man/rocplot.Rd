@@ -6,6 +6,13 @@
 \usage{
 rocplot(pred, truth, ...)
 }
+\arguments{
+\item{pred}{p}
+
+\item{truth}{t}
+
+\item{...}{etcet}
+}
 \description{
 rocplot
 }

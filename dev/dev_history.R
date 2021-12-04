@@ -53,8 +53,9 @@ originize_dir("R", pkgs = "methods", add_base_packages = T)
 
 att_from_description() %>% find_remotes()
 
-
-
+# https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/
+# https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/globalVariables
+# https://stackoverflow.com/questions/40251801/how-to-use-utilsglobalvariables
 origin::get_exported_functions("CodeDepends")
 
 

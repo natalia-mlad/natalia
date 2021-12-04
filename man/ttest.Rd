@@ -6,6 +6,13 @@
 \usage{
 ttest(n, loc, scale)
 }
+\arguments{
+\item{n}{n}
+
+\item{loc}{loc}
+
+\item{scale}{scale}
+}
 \description{
 t-test
 }

@@ -34,7 +34,7 @@ glmnet_cor <- function(x1, y, x2 = NULL, prop = .67, alpha = .05, lambda.type = 
   s <- sample(nrow(x1), prop * nrow(x1))
   x1 <- sapply(x1, scale)
   x2 <- sapply(x2, scale)
-  cv.glmnet(x1[s, ], y[s], alpha = alpha) %>%
+  glmnet::cv.glmnet(x1[s, ], y[s], alpha = alpha) %>%
     stats::predict(x2[-s, ], s = lambda.type) %>%
     stats::cor(y[-s])
 }
@@ -51,7 +51,7 @@ foo1 = function(x1, y, x2 = NULL, p = 0.67) {
   if (is.null(x2)) x2 = x1
   x1 = sapply(x1, scale)
   x2 = sapply(x2, scale)
-  cv.glmnet(x1[s,], y[s], alpha = 0.05) %>%
+  glmnet::cv.glmnet(x1[s,], y[s], alpha = 0.05) %>%
     stats::predict(x2[-s,], s = "lambda.min") %>%
     stats::cor(y[-s])
 }
@@ -88,14 +88,14 @@ my.lasso.function <- function(data, x, y, nrep = 100, family = "gaussian",
 
   for (i in 1:nrep) {
     #CV <- cv.glmnet(x, y, family = family, alpha = alpha)
-    CV <- cv.glmnet(x, y, family = family, alpha = alpha, lambda = lambda)
+    CV <- glmnet::cv.glmnet(x, y, family = family, alpha = alpha, lambda = lambda)
     MSEs <- cbind(MSEs, CV$cvm)
   }
   rownames(MSEs) <- CV$lambda
 
   if(isTRUE(lambda.min)) {
     lambda.min <- as.numeric(names(which.min(rowMeans(MSEs))))
-    fit <- glmnet(x, y, family = family, alpha = alpha, lambda = lambda.min)
+    fit <- glmnet::glmnet(x, y, family = family, alpha = alpha, lambda = lambda.min)
   } else {
     #next
     # Note: next used in wrong context: no loop is visible at lasso.R:94
