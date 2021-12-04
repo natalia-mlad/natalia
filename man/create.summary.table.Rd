@@ -4,12 +4,13 @@
 \alias{create.summary.table}
 \title{create.summary.table}
 \usage{
-create.summary.table(df, qs)
+create.summary.table(df, new_names = NULL)
 }
 \arguments{
 \item{df}{dataframe}
 
-\item{qs}{a character vector of labels to replace the column names with as necessary}
+\item{new_names}{(optional) a character vector of labels to replace the
+column names with as necessary (qs)}
 }
 \value{
 a pretty tabyl

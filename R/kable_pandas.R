@@ -80,8 +80,6 @@ kable_pandas <- function(df, rmd = FALSE, show_rownames = FALSE) {
 #'
 #' @param pydf a python dataframe
 #'
-#' @return
-#'
 python_df <- function(pydf) {
   # if dataframe has a MultiIndex, reset index to turn them into regular columns
   # the first element is the Python class of the object

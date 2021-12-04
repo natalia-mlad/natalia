@@ -20,7 +20,6 @@ Use a discrete covariate x.
 }
 \examples{
 if(FALSE){
-library(tidyverse)
 simulate_data_discrete()
 }
 

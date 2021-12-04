@@ -17,9 +17,9 @@
 #' }
 #'
 sort_my_zips <- function(all = FALSE, recurse = FALSE) {
-  require(tidyverse)
-  require(archive)
-  require(fs)
+  # require(tidyverse)
+  # require(archive)
+  # require(fs)
   #wd <- fs::path_wd()
   #dirpath <- fs::path_wd()
   if(isTRUE(all)){
@@ -55,7 +55,7 @@ sort_my_zips <- function(all = FALSE, recurse = FALSE) {
     filter(!(name %in% existing_dir)) %>%
     mutate(my_dir = fs::path_wd(name), .after = name) %>% #TODO
     mutate(zip_contents = filename %>%
-             map(~ archive(.x) %>%
+             map(~ archive::archive(.x) %>%
                    filter(size != 0)),
            .after = my_dir) %>%
     mutate(n_zip = map_int(zip_contents, nrow),
@@ -67,7 +67,7 @@ sort_my_zips <- function(all = FALSE, recurse = FALSE) {
   try({
     map2(my_zips$filename,
          my_zips$my_dir,
-         ~ archive_extract(.x, dir = .y))
+         ~ archive::archive_extract(.x, dir = .y))
   })
 
   ## Checks

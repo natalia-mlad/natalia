@@ -3,7 +3,7 @@
 #' @param url character. the url of the wiki page
 #' @param keep_duplicates logical.
 #'
-#' @return
+#' @return a character vector
 #' @export
 wiki_grab_links <- function(url, keep_duplicates = FALSE){
   links <- rvest::read_html(url) %>% # read page

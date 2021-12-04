@@ -24,25 +24,25 @@ code.converter <- function(script_path, ...) {
   stopifnot(is.character(script_path))
 
 # packages:
-  require(fs)
-  require(tidyverse)
-  require(CodeDepends)
-# functions:
-  `%notin%` <- Negate(`%in%`)
+  # require(fs)
+  # require(tidyverse)
+  # require(CodeDepends)
+  # functions:
+  # `%notin%` <- Negate(`%in%`)
 
 # Step 1: specify code path. ####
   #script <- "untitled.R"
   script <- script_path
 
   # Step 2: extract info. ####
-  src <- readScript(script[1])
-  cd <- getInputs(src)
+  src <- CodeDepends::readScript(script[1])
+  cd <- CodeDepends::getInputs(src)
   libs <- unique(unlist(lapply(cd, slot, name = "libraries"))) # TODO: could the code below be done with purrr instead? & would it be faster?
   #map(cd, "libraries") %>% unlist() %>% unique()
 
   # Step 3: extract actual code. ####
   code <-
-    getDetailedTimelines(info = cd) %>%
+    CodeDepends::getDetailedTimelines(info = cd) %>%
     split(.$var) %>%
     map( ~ .x[which(.x$defined == TRUE), ]) %>%
     map( ~ c(
@@ -57,7 +57,7 @@ code.converter <- function(script_path, ...) {
   raw <- readLines(script)
   comments <- str_subset(raw, "#")
   report1 <- raw[raw %notin% code]
-  report2 <- getDetailedTimelines(info = cd) %>%
+  report2 <- CodeDepends::getDetailedTimelines(info = cd) %>%
     group_by(step) %>%
     summarise(n.used = sum(used), n.defined = sum(defined)) %>%
     filter(n.defined == 0) %>% select(step) %>%
@@ -117,13 +117,13 @@ code.converter <- function(script_path, ...) {
 
   # Step 5: view the result! ####
   #file_show(paste0("CLEANED/CLEANED-", script))
-  out0 <- getDetailedTimelines(info = cd)
+  out0 <- CodeDepends::getDetailedTimelines(info = cd)
   out1 <- paste0("CLEANED/CLEANED-", script)
 
 # BONUS INFO ####
   out2 <- unlist(lapply(cd, slot, name = "removes")) %>% unique()
 
-  out3 <- getDetailedTimelines(info = cd) %>% split(.$var) %>%
+  out3 <- CodeDepends::getDetailedTimelines(info = cd) %>% split(.$var) %>%
     map( ~ .x[which(.x$used == T & .x$defined == F), ]) %>%
     map( ~ src[.x[, 1]] %>% paste()) %>%
     View()

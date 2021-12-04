@@ -342,7 +342,6 @@ fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
 #' @export
 #' @examples
 #' if(FALSE) {
-#' library(tidyverse)
 #' simulate_data_continuous()
 #' }
 #'
@@ -366,7 +365,6 @@ simulate_data_continuous <- function() {
 #' @export
 #' @examples
 #' if(FALSE){
-#' library(tidyverse)
 #' simulate_data_discrete()
 #' }
 #'

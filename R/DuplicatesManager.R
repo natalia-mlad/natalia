@@ -26,9 +26,9 @@
 #' }
 #'
 identify_duplicates <- function(my_dir, glob, algo = "xxhash64", excluded_dir = NULL) {
-  library(fs)
-  library(digest)
-  library(tidyverse)
+  # library(fs)
+  # library(digest)
+  # library(tidyverse)
   # no output diff:
   # algo = c("md5","crc32", "sha1", "sha256", "sha512", "xxhash32", "xxhash64", "murmur32", "blake3")
   if(is.null(excluded_dir)){
@@ -50,7 +50,7 @@ identify_duplicates <- function(my_dir, glob, algo = "xxhash64", excluded_dir = 
   #,length = 5000
 
   duplicate_files <- filelist$path %>%
-    map_chr( ~ digest(.x, file = T, algo = algo)) %>%
+    map_chr( ~ digest::digest(.x, file = T, algo = algo)) %>%
     split(filelist$path, .) %>%
     keep( ~ length(.x) > 1) %>%
     map( ~ str_remove_all(.x, my_dir)) %>%

@@ -19,15 +19,26 @@
 
 # Import From -------------------------------------------------------------
 automagic::get_dependent_packages("R")
-originize_file("R/ds-communicate.R")
 
-use_import_from("purrr", "map")
+originize_file("R/ds-communicate.R")
+originize_dir("R", pkgs = "CodeDepends")
+originize_dir("R", pkgs = "tidyr")
+
+# installed.packages()[,1]
+originize_file("R/flextable.R")
+
+
+# use_import_from("fs", "dir_info")
+use_import_from("stringr", c("str_detect", "str_remove_all", "str_replace"))
+use_import_from("archive", "archive")
+
 
 # sinew::makeImport()
 att_from_description()
 att_from_description() %>% find_remotes()
 
 
+origin::get_exported_functions("CodeDepends")
 
 
 ####

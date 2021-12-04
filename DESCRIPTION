@@ -10,7 +10,18 @@ BugReports: https://github.com/natalia-mlad/natalia/issues
 Depends: 
     R (>= 2.10)
 Imports: 
-    archive,
+    fs,
+    janitor,
+    purrr,
+    tibble,
+    tidyr,
+    dplyr,
+    stringr,
+    magrittr,
+    rvest,
+    archive
+Suggests: 
+    testthat (>= 3.0.0),
     assertr,
     cleanNLP,
     cli,
@@ -19,37 +30,27 @@ Imports:
     corrplot,
     crayon,
     digest,
-    dplyr,
     formattable,
-    fs,
     here,
-    janitor,
     kableExtra,
     knitr,
     lubridate,
-    magrittr,
     Matrix,
     parallel,
     pdfsearch,
     pdftools,
-    purrr,
     qdap,
     reshape2,
     reticulate,
     rlang,
     ROCR,
-    rvest,
     stringi,
-    stringr,
     tarchetypes,
     targets,
     textreadr,
-    tidyverse,
     tinytex,
     tm,
     tokenizers
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true

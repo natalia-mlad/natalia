@@ -20,7 +20,6 @@ Use a continuous covariate x.
 }
 \examples{
 if(FALSE) {
-library(tidyverse)
 simulate_data_continuous()
 }
 
