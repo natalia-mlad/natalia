@@ -1,4 +1,4 @@
-##
+#####
 # Key steps that accelerate your R development workflow (details on how to do all this follow):
 # - Make usethis available in interactive R sessions.
 # - Provide usethis with info to use in all new R packages you create.
@@ -17,14 +17,19 @@
 #  edit_rstudio_prefs() edit_git_config() edit_git_ignore()
 ###
 
-
 # Import From -------------------------------------------------------------
+automagic::get_dependent_packages("R")
+
+
+
 # sinew::makeImport()
 att_from_description()
 att_from_description() %>% find_remotes()
 
 
 
+
+####
 # Find All User Defined functions in the Project
 origin::get_local_functions()
 # path_home("OneDrive/PhD Psychology/01 - R Project") %>% dir_ls(type = "directory")
@@ -303,35 +308,9 @@ pkgdown::build_site()
 
 
 # Extract scripts dependencies and generate your Description file ---------
-# bookdown Imports are in Rmds
-# imports <- c("bookdown", attachment::att_from_rmds("."))
-# attachment::att_to_desc_from_is(path.d = "DESCRIPTION", imports = imports, suggests = NULL)
-
-# Return all dependencies from... (att_from_*)
-# -description, namespace, rmd(s), rscript(s)
-att_from_description() %>% find_remotes()
-att_from_namespace()
-att_from_rscripts()
-att_from_rmds() # Vignettes?
-
-# Remotes (e.g., github)
-# find_remotes	  Proposes values for Remotes field for DESCRIPTION file based on your installation
-# set_remotes_to_desc	  Add Remotes field to DESCRIPTION based on your local installation
-
 # Create a file for package installation:
 create_dependencies_file()
 # This creates a 'dependencies.R' in the 'inst' folder
-
-# Amend DESCRIPTION with dependencies read from package code parsing:
-att_amend_desc()
-att_to_desc_from_pkg()
-# Amend DESCRIPTION with dependencies from imports and suggests package list:
-att_to_desc_from_is()
-
-
-# install_from_description	Install missing package from DESCRIPTION
-# install_if_missing	install packages if missing
-
 
 
 # ??NAMESPACE -------------------------------------------------------------
@@ -418,9 +397,173 @@ att_to_desc_from_is()
 # base::getExportedValue		Namespace Reflection Support
 # utils::assignInNamespace		Utility Functions for Developing Namespaces
 
+
+
+# document ----------------------------------------------------------------
+# Run R CMD check on a Package Directory
+document:::check_package()
+
+check_package(
+  package_directory,
+  working_directory,
+  check_as_cran = TRUE,
+  stop_on_check_not_passing = FALSE,
+  debug = TRUE
+)
+
+
+# rcmdcheck ---------------------------------------------------------------
+library(rcmdcheck)
+##
+(my_check <- rcmdcheck::rcmdcheck())
+(my_check_details <- check_details(my_check))
+
+cat(my_check_details$warnings)
+my_check_details$warning[2] %>% cat()
+my_check_details$warning[4] %>% cat()
+my_check_details$warning[5] %>% cat()
+my_check_details$warning[6] %>% cat()
+my_check_details$warning[7] %>% cat()
+
+cat(my_check_details$notes)
+my_check_details$notes[1] %>% cat()
+my_check_details$notes[2] %>% cat()
+
+my_check_details$session_info$platform
+# A named list with elements:
+#
+# - package: package name.
+# - version: package version.
+# - description: the contents of the DESCRIPTION file of the package. A single string.
+#
+# - notes: character vector of check NOTEs, each NOTE is an element.
+# - warnings: character vector of check WARNINGs, each WARNING is an element.
+# - errors: character vector of check ERRORs, each ERROR is an element. A check timeout adds an ERROR to this vector.
+#
+# - platform: check platform
+# - checkdir: check directory. the path to the check directory, if it hasn't been cleaned up yet, or NA. The check directory is automatically cleaned up, when the check object is deleted (garbage collected).
+#
+# - install_out: the output of the installation, contents of the 00install.out file. A single string.
+# - session_info: the output of sessioninfo::session_info(), from the R session performing the checks.
+#
+# - cran: whether it is a CRAN packaged package.
+# - bioc: whether it is a BioConductor package.
+##
+
+getOption("repos") #"https://cran.rstudio.com/"
+Sys.getenv("RCMDCHECK_ERROR_ON") #[1] ""
+rcmdcheck(
+  path = ".",
+  quiet = FALSE,
+  args = character(),
+  build_args = character(),
+  check_dir = NULL,
+  libpath = .libPaths(),
+  repos = getOption("repos"),
+  timeout = Inf,
+  error_on = Sys.getenv("RCMDCHECK_ERROR_ON", c("never", "error", "warning", "note")[1]),
+  env = character()
+)
+
+
+# check_details	Query R CMD check results and parameters
+# compare_checks	Compare a set of check results to another check result
+
+# compare_to_cran	Compare a check result to CRAN check results
+# cran_check_flavours	Download and show all CRAN check flavour platforms
+# cran_check_results	Download and parse R CMD check results from CRAN
+
+# parse_check	Parse 'R CMD check' results from a file or string
+# parse_check_url	Shorthand to parse R CMD check results from a URL
+
+# print.rcmdcheck	Print R CMD check results
+# print.rcmdcheck_comparison	Print R CMD check result comparisons
+
+# rcmdcheck	Run R CMD check from R and Capture Results
+# rcmdcheck-config	rcmdcheck configuration
+# rcmdcheck_process	Run an R CMD check process in the background
+
+# xopen.rcmdcheck	Open the check directory in a file browser window
+
+# {devtools} --------------------------------------------------------------
+missing_s3()
+
+# bash	Open bash shell in package directory.
+
+# build	Build package
+
+# build_manual	Create package pdf manual
+# build_readme	Build a Rmarkdown files package
+# build_rmd	Build a Rmarkdown files package
+# build_site	Execute 'pkgdown' build_site in a package
+# build_vignettes	Build package vignettes.
+build_vignettes(
+  pkg = ".",
+  dependencies = "VignetteBuilder",
+  clean = TRUE,
+  upgrade = "never",
+  quiet = F,
+  install = TRUE,
+  keep_md = TRUE
+)
+
+# Build and check a package, cleaning up automatically on success:
+# check
+# check_built
+
+# check_mac_release	Check macOS package
+
+# check_man	Check documentation, as R CMD check does.
+
+# check_rhub	Run CRAN checks for package on R-hub
+
+# check_win	Build windows binary package.
+# check_win_devel	Build windows binary package.
+# check_win_oldrelease	Build windows binary package.
+# check_win_release	Build windows binary package.
+
+# clean_vignettes	Clean built vignettes.
+
+# create	Create a package
+
+# dev_mode	Activate and deactivate development mode.
+
+# dev_sitrep	Report package development situation
+
+# document	Use roxygen to document a package.
+
+# install	Install a local development package.
+# install_deps	Install package dependencies if needed.
+# install_dev_deps	Install package dependencies if needed.
+
+# lint	Lint all source files in a package.
+
+# load_all	Load complete package
+
+# release	Release package to CRAN.
+
+# reload	Unload and reload package.
+# run_examples	Run all examples in a package.
+# save_all	Save all documents in an active IDE session.
+# show_news	Show package news
+
+# source_gist	Run a script on gist
+# source_url	Run a script through some protocols such as http, https, ftp, etc.
+
+# spell_check	Spell checking
+
+# test	Execute testthat tests in a package
+# test_active_file	Execute testthat tests in a package
+# test_coverage	Execute testthat tests in a package
+# test_coverage_active_file	Execute testthat tests in a package
+
+# uninstall	Uninstall a local development package.
+
+# wd	Set working directory.
+
 # {attachment} ------------------------------------------------------------
 tmpdir <- tempdir()
-file.copy(system.file("dummypackage",package = "attachment"), tmpdir, recursive = T)
+file.copy(system.file("dummypackage", package = "attachment"), tmpdir, recursive = T)
 dummypackage <- file.path(tmpdir, "dummypackage")
 browseURL(dummypackage)
 #`NAMESPACE`:
@@ -456,6 +599,35 @@ my_mean <- function(x){
 #cleanup
 unlink(dummypackage)
 
+# bookdown Imports are in Rmds
+# imports <- c("bookdown", attachment::att_from_rmds("."))
+# attachment::att_to_desc_from_is(path.d = "DESCRIPTION", imports = imports, suggests = NULL)
+
+# Return all dependencies from... (att_from_*)
+# -description, namespace, rmd(s), rscript(s)
+att_from_description() %>% find_remotes()
+att_from_namespace()
+att_from_rscripts()
+att_from_rmds() # Vignettes?
+
+# Remotes (e.g., github)
+# find_remotes	  Proposes values for Remotes field for DESCRIPTION file based on your installation
+# set_remotes_to_desc	  Add Remotes field to DESCRIPTION based on your local installation
+
+# Create a file for package installation:
+create_dependencies_file()
+# This creates a 'dependencies.R' in the 'inst' folder
+
+# Amend DESCRIPTION with dependencies read from package code parsing:
+att_amend_desc()
+att_to_desc_from_pkg()
+# Amend DESCRIPTION with dependencies from imports and suggests package list:
+att_to_desc_from_is()
+
+
+# install_from_description	Install missing package from DESCRIPTION
+# install_if_missing	install packages if missing
+
 
 
 # {CMD} ---------------------------------------------------------------------
@@ -466,7 +638,7 @@ CDM_require_namespace(pkg)
 cdm_attach_internal_function(pack, fun)
 
 ## print function in summary
-cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null=FALSE)
+cdm_print_summary_data_frame(obji, from=NULL, to=NULL, digits=3, rownames_null= F)
 ## print summary call
 cdm_print_summary_call(object, call_name="call")
 ## print computation time

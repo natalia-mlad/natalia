@@ -170,7 +170,7 @@ ttest <- function(n, loc, scale) {
 # x <- inner_join(dobname2, dobname, by = c(dateOfBirth = "DateOfBirth"))
 # x <- x %>% group_by(id) %>% filter(adist == min(adist))
 #
-#x %>% group_by(id) %>% filter(adist == min(adist)) %>% group_by(FullName.x, FullName.y) %>% summarise()
+# x %>% group_by(id) %>% filter(adist == min(adist)) %>% group_by(FullName.x, FullName.y) %>% summarise()
 ##
 #matched4 <- matched4[, names(matched4) %in% c("id", "CustomerID")]
 ##
