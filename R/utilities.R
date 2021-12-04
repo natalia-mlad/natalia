@@ -1,6 +1,9 @@
+#' notin
+`%notin%` <- Negate(`%in%`)
+
 #' my_env
-#'
 #' @param type type e.g., is.data.frame, is.character,
+#'
 my_env <- function(type = NULL) {
   if (is.null(type)) {
     #TODO: how to make sure it actually works in my environmnent and
@@ -21,29 +24,27 @@ how_many_cores_you_got <- function() {
   return(nCores)
 }
 
-#' notin
-#' @export
-`%notin%` <- Negate(`%in%`)
-
 #' @title Copy a dataframe or matrix to clipboard
 #'
 #' @param x the dataframe or matrix
 #' @param row.names copy the row names? TRUE by default
 #' @param col.names copy the column names? TRUE by default
+#' @param ... dots argument
 #'
 #' @export
-##
+copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
+  write.table(x, "clipboard-256", sep = "\t", row.names = row.names, col.names = col.names, ...)
+}
 # copy <- function(x, row.names = FALSE, col.names = TRUE, ...) {
 #   write.table(x, "clipboard", sep = "\t", row.names = row.names, col.names = col.names, ...)
 #   #write.table(x, file = "clipboard-16384", sep = "\t", row.names = row.names, col.names = col.names, ...)
 # }
-copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
-  write.table(x, "clipboard-256", sep = "\t", row.names = row.names, col.names = col.names, ...)
-}
 
 #' Load data to a separate environment
 #'
+#' @param env new.env
 #' @param RData path for the .RData file
+#'
 #' @export
 #'
 #' @examples
@@ -91,6 +92,7 @@ unattach_all <- function() {
 
 #----Wrangling w/ Functions----
 #' embody expression for a function
+#' @param expr expr
 #' @export
 embody.expr <- function (expr) {
   fun <- function() {}
@@ -99,6 +101,8 @@ embody.expr <- function (expr) {
 }
 
 #' find function dependencies
+#' @param e expression
+#' @param merge TF
 #' @export
 find.dependencies <- function(e, merge = F) {
   #how to deal with a function requiring a package to run??
@@ -107,10 +111,15 @@ find.dependencies <- function(e, merge = F) {
 
 #----Formatting----
 #' comma
+#' @param x x
 #' @export
-comma <- function(x) format(x, digits = 2, big.mark = ",")
+comma <- function(x){
+  format(x, digits = 2, big.mark = ",")
+}
 
 #' capwords
+#' @param s string
+#' @param strict TF
 #' @export
 capwords <- function(s, strict = FALSE) {
   cap <- function(s) paste(toupper(substring(s, 1, 1)),

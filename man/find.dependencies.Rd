@@ -6,6 +6,11 @@
 \usage{
 find.dependencies(e, merge = F)
 }
+\arguments{
+\item{e}{expression}
+
+\item{merge}{TF}
+}
 \description{
 find function dependencies
 }

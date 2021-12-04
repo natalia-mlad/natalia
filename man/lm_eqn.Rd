@@ -6,6 +6,9 @@
 \usage{
 lm_eqn(df)
 }
+\arguments{
+\item{df}{df}
+}
 \description{
 lm_eqn
 }

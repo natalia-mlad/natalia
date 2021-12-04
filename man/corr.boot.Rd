@@ -6,6 +6,11 @@
 \usage{
 corr.boot(data, i)
 }
+\arguments{
+\item{data}{d}
+
+\item{i}{i}
+}
 \description{
 corr.boot
 }

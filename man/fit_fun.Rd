@@ -6,6 +6,11 @@
 \usage{
 fit_fun(split, ...)
 }
+\arguments{
+\item{split}{s}
+
+\item{...}{dot}
+}
 \description{
 Will be used to fit the models to different bootstrap data sets
 }

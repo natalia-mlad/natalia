@@ -6,6 +6,11 @@
 \usage{
 nozero(x, k = 2)
 }
+\arguments{
+\item{x}{x}
+
+\item{k}{k}
+}
 \description{
 removes leading zero before decimals and rounds number to two decimals
 }

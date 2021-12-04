@@ -6,6 +6,9 @@
 \usage{
 invlogit(x)
 }
+\arguments{
+\item{x}{x}
+}
 \description{
 invlogit
 }

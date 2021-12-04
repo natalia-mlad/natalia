@@ -6,6 +6,13 @@
 \usage{
 bootReg(formula, data, indices)
 }
+\arguments{
+\item{formula}{f}
+
+\item{data}{d}
+
+\item{indices}{i}
+}
 \description{
 bootReg
 }

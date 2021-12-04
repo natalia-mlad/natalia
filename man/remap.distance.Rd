@@ -6,6 +6,11 @@
 \usage{
 remap.distance(data, message = TRUE)
 }
+\arguments{
+\item{data}{data}
+
+\item{message}{TF}
+}
 \description{
 remap.distance
 }

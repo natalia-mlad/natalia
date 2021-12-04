@@ -6,6 +6,9 @@
 \usage{
 embody.expr(expr)
 }
+\arguments{
+\item{expr}{expr}
+}
 \description{
 embody expression for a function
 }

@@ -6,6 +6,9 @@
 \usage{
 P__disp(x)
 }
+\arguments{
+\item{x}{x}
+}
 \description{
 P__disp
 }

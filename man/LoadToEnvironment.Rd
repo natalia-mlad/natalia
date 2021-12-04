@@ -8,6 +8,8 @@ LoadToEnvironment(RData, env = new.env())
 }
 \arguments{
 \item{RData}{path for the .RData file}
+
+\item{env}{new.env}
 }
 \description{
 Load data to a separate environment

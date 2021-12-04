@@ -13,6 +13,19 @@ fuzzy.join(
   useBytes = TRUE
 )
 }
+\arguments{
+\item{df.x}{df}
+
+\item{df.y}{df}
+
+\item{by}{var}
+
+\item{max.distance}{num}
+
+\item{ignore.case}{TF}
+
+\item{useBytes}{TF}
+}
 \description{
 Fuzzy loop
 }

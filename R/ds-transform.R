@@ -1,22 +1,6 @@
-#' tidy_my_data
-#'
-#' @param data dataframe
-#'
-#' @return tidier data
-#' @export
-#'
-tidy_my_data <- function(data) {
-  data %>%
-    remove_empty(quiet = F) %>%
-    remove_constant(quiet = F)
-}
-
 #' polytomize data to demo ordinal models
-#'
 #' @param x ?a vector?
-#'
 #' @export
-#'
 polytomize_data <- function(x) {
   thresholds <- c(-Inf, -0.5, 1, Inf) # 3 categories
   ordLong <- data.frame(lapply(exLong[-1], function(x) {
@@ -27,18 +11,26 @@ polytomize_data <- function(x) {
 }
 
 #' removes leading zero before decimals and rounds number to two decimals
+#' @param x x
+#' @param k k
 #' @export
 nozero <- function(x, k = 2) {
   sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))
 }
 
 #' formats numbers to no more or less than two decimals
+#' @param x x
+#' @param k k
 #' @export
 zero <- function(x, k = 2) {
   format(round(x, k), nsmall = k)
 }
 
 #' remap.distance
+#'
+#' @param data data
+#' @param message TF
+#'
 #' @export
 remap.distance <- function(data, message = TRUE) {
   if(missing(data)) missingMsg('dat')
@@ -61,6 +53,12 @@ remap.distance <- function(data, message = TRUE) {
 }
 
 #' change.range.simple
+#'
+#' @param data data
+#' @param col_names names
+#' @param min num
+#' @param max num
+#'
 #' @export
 change.range.simple <- function(data, col_names, min = 0, max = 100) {
   stopifnot(min != max)
@@ -81,6 +79,10 @@ change.range.simple <- function(data, col_names, min = 0, max = 100) {
 }
 
 #' change.range
+#'
+#' @param object obj
+#' @param new_data new
+#' @param ... dot
 change.range <- function (object, new_data, ...) {
   # prep.range <- function (x, training, info = NULL, ...) {
   #   col_names <- eval_select_recipes(x$terms, training, info)
@@ -117,6 +119,10 @@ change.range <- function (object, new_data, ...) {
 }
 
 #' Test.Nest
+#'
+#' @param x x
+#' @param y y
+#'
 #' @export
 test.nest <- function(x, y) {
   M <- stats::xtabs(~ x + y, sparse = T)
@@ -179,9 +185,18 @@ ttest <- function(n, loc, scale) {
 #dobname2$name2 <- "" # Creating an empty column
 #output <- matrix(ncol=5, nrow=nrow(cb_raw2))
 ##
+
 #' Join two tables using fuzzy matching
 #'
 #' Fuzzy loop
+#'
+#' @param df.x df
+#' @param df.y df
+#' @param by var
+#' @param max.distance num
+#' @param ignore.case TF
+#' @param useBytes TF
+#'
 #' @export
 fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
                        ignore.case = TRUE, useBytes = TRUE) {

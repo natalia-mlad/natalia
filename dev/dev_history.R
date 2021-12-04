@@ -48,9 +48,11 @@ pkgs <- unique(c(desc, rscripts, .packages())) %>%
 originize_dir("R", pkgs = pkgs)
 
 originize_dir("R", pkgs = "stats", add_base_packages = T)
+originize_dir("R", pkgs = "methods", add_base_packages = T)
 
 
 att_from_description() %>% find_remotes()
+
 
 
 origin::get_exported_functions("CodeDepends")

@@ -6,6 +6,15 @@
 \usage{
 change.range.simple(data, col_names, min = 0, max = 100)
 }
+\arguments{
+\item{data}{data}
+
+\item{col_names}{names}
+
+\item{min}{num}
+
+\item{max}{num}
+}
 \description{
 change.range.simple
 }

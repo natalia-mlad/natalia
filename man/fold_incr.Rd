@@ -6,6 +6,11 @@
 \usage{
 fold_incr(split, ...)
 }
+\arguments{
+\item{split}{s}
+
+\item{...}{dot}
+}
 \description{
 fold_incr
 }

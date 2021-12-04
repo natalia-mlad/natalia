@@ -6,6 +6,11 @@
 \usage{
 capwords(s, strict = FALSE)
 }
+\arguments{
+\item{s}{string}
+
+\item{strict}{TF}
+}
 \description{
 capwords
 }

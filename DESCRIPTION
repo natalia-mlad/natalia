@@ -21,7 +21,8 @@ Imports:
     rvest,
     archive,
     utils,
-    stats
+    stats,
+    rlang
 Suggests: 
     testthat (>= 3.0.0),
     assertr,
@@ -45,7 +46,6 @@ Suggests:
     qdap,
     reshape2,
     reticulate,
-    rlang,
     ROCR,
     stringi,
     tarchetypes,

@@ -1,12 +1,20 @@
 #' bootReg
+#'
+#' @param formula f
+#' @param data d
+#' @param indices i
+#'
 #' @export
 bootReg <- function(formula, data, indices) {
   d <- data
-  fit <- stats::glm(formula, data = d, weights = SumOpportunitiesToPay, family = binomial(link = "logit"))
+  fit <- stats::glm(formula, data = d, weights = SumOpportunitiesToPay, family = stats::binomial(link = "logit"))
   return(stats::coef(fit))
 }
 
 #' P__disp
+#'
+#' @param x x
+#'
 #' @export
 P__disp <- function(x) {
   pr <- sum(stats::residuals(x, type = "pearson")^2)
@@ -15,12 +23,18 @@ P__disp <- function(x) {
 }
 
 #' invlogit
+#'
+#' @param x x
+#'
 #' @export
 invlogit <- function(x) {
   1 / (1 + exp(-x))
 }
 
 #' lm_eqn
+#'
+#' @param df df
+#'
 #' @export
 lm_eqn <- function(df) {
   m <- stats::lm(y ~ x, df)

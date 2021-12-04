@@ -12,6 +12,8 @@ copy.table(x, row.names = TRUE, col.names = TRUE, ...)
 \item{row.names}{copy the row names? TRUE by default}
 
 \item{col.names}{copy the column names? TRUE by default}
+
+\item{...}{dots argument}
 }
 \description{
 Copy a dataframe or matrix to clipboard

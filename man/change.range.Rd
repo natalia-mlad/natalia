@@ -6,6 +6,13 @@
 \usage{
 change.range(object, new_data, ...)
 }
+\arguments{
+\item{object}{obj}
+
+\item{new_data}{new}
+
+\item{...}{dot}
+}
 \description{
 change.range
 }

@@ -6,6 +6,11 @@
 \usage{
 zero(x, k = 2)
 }
+\arguments{
+\item{x}{x}
+
+\item{k}{k}
+}
 \description{
 formats numbers to no more or less than two decimals
 }
