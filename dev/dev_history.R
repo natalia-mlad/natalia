@@ -19,8 +19,9 @@
 
 # Import From -------------------------------------------------------------
 automagic::get_dependent_packages("R")
+originize_file("R/ds-communicate.R")
 
-
+use_import_from("purrr", "map")
 
 # sinew::makeImport()
 att_from_description()
@@ -41,7 +42,7 @@ path_home("OneDrive/PhD Psychology/01 - R Project/rbook-master/") %>%
 origin::get_pkgs_from_description()
 
 
-
+##u
 # Troubleshooting & Health Checks -----------------------------------------
 has_devel(); proj_sitrep()#; git_sitrep()
 devtools::document(); devtools::check()
