@@ -71,7 +71,43 @@ path_home("OneDrive/PhD Psychology/01 - R Project/rbook-master/") %>%
 origin::get_pkgs_from_description()
 
 
-##u
+path_home("OneDrive/PhD Psychology/03 - Oakam Work") %>%
+  origin::get_local_functions(path = .)
+
+path_home("OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure")  %>%
+  origin::get_local_functions(path = .)
+
+
+#####
+path = path_home("OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/04 - Study 3 - Validating Measure/")
+
+x = dupree::dupree_dir(path = path, recursive = F)
+
+View(as_tibble(x))
+# x = x[[1]]
+
+# files <- dir(path, pattern = ".*.R$", recursive = F, full.names = T)
+# dupree(files, min_block_size)
+
+y <- as_tibble(x) %>%
+  mutate(
+    a_file = path_file(file_a),
+    b_file = path_file(file_b),
+    file_a_contents = map(file_a, readLines),
+    file_b_contents = map(file_b, readLines),
+    file_a_lines = map2_chr(file_a_contents, line_a, ~ .x[.y + c(0:10)] %>% paste(collapse = "\n")),
+    file_b_lines = map2_chr(file_b_contents, line_b, ~ .x[.y + c(0:10)] %>% paste(collapse = "\n"))
+  ) %>%
+  select(-c(file_a_contents, file_b_contents))
+head(y)
+
+y %>% group_by(a_file, b_file) %>%
+  summarise(n = n()) %>% View()
+
+y %>% filter(a_file == "credit bureau data.R") %>%
+  select(b_file, file_a_lines, file_b_lines)
+
+###
 # Troubleshooting & Health Checks -----------------------------------------
 has_devel(); proj_sitrep()#; git_sitrep()
 devtools::document(); devtools::check()

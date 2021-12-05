@@ -2,7 +2,8 @@
 % Please edit documentation in R/glm.R
 \name{invlogit}
 \alias{invlogit}
-\title{invlogit}
+\title{invlogit
+see arm::invlogit}
 \usage{
 invlogit(x)
 }
@@ -11,4 +12,5 @@ invlogit(x)
 }
 \description{
 invlogit
+see arm::invlogit
 }

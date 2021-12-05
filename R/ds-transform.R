@@ -353,6 +353,7 @@ fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
 # }
 # dplyr_reconstruct(out, x)}
 
+
 # Simulate Data -----------------------------------------------------------
 #' @title Simulate data from the model.
 #' @description Use a continuous covariate x.

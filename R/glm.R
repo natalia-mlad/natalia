@@ -6,8 +6,10 @@
 #'
 #' @export
 bootReg <- function(formula, data, indices) {
+  #d <- data[i, ]
   d <- data
-  fit <- stats::glm(formula, data = d, weights = SumOpportunitiesToPay, family = stats::binomial(link = "logit"))
+  fit <- stats::glm(formula, data = d, weights = SumOpportunitiesToPay,
+                    family = stats::binomial(link = "logit"))
   return(stats::coef(fit))
 }
 
@@ -23,10 +25,8 @@ P__disp <- function(x) {
 }
 
 #' invlogit
-#'
+#' see arm::invlogit
 #' @param x x
-#'
-#' @export
 invlogit <- function(x) {
   1 / (1 + exp(-x))
 }
