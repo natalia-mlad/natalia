@@ -10,5 +10,7 @@ embody.expr(expr)
 \item{expr}{expr}
 }
 \description{
-embody expression for a function
+notes:
+env <- list(\code{~} = identity)
+body(e) <- eval(call("substitute", body(e), env), envir = baseenv())
 }

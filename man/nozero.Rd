@@ -9,7 +9,7 @@ nozero(x, k = 2)
 \arguments{
 \item{x}{x}
 
-\item{k}{k}
+\item{k}{number of decimals}
 }
 \description{
 removes leading zero before decimals and rounds number to two decimals

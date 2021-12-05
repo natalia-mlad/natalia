@@ -1,3 +1,6 @@
+#----Numeric Tricks----
+# data <- as.data.frame(df[,c(4:29)])
+
 #' polytomize data to demo ordinal models
 #' @param x ?a vector?
 #' @export
@@ -12,7 +15,7 @@ polytomize_data <- function(x) {
 
 #' removes leading zero before decimals and rounds number to two decimals
 #' @param x x
-#' @param k k
+#' @param k number of decimals
 #' @export
 nozero <- function(x, k = 2) {
   sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))
@@ -20,7 +23,7 @@ nozero <- function(x, k = 2) {
 
 #' formats numbers to no more or less than two decimals
 #' @param x x
-#' @param k k
+#' @param k number of decimals
 #' @export
 zero <- function(x, k = 2) {
   format(round(x, k), nsmall = k)

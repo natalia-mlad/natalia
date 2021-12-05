@@ -9,7 +9,7 @@ zero(x, k = 2)
 \arguments{
 \item{x}{x}
 
-\item{k}{k}
+\item{k}{number of decimals}
 }
 \description{
 formats numbers to no more or less than two decimals

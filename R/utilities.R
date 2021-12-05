@@ -1,20 +1,5 @@
 # notin `%notin%` <- Negate(`%in%`)
 
-#' my_env
-#' @param type type e.g., is.data.frame, is.character,
-#'
-my_env <- function(type = NULL) {
-  if (is.null(type)) {
-    #TODO: how to make sure it actually works in my environmnent and
-    #not the functions env....
-    ls.str()
-  } else {
-    stopifnot(is.character(type))
-    # TODO; make sure it's formatted so: is.data.frame, is.character,
-    names(Filter(type, mget(ls(all = T))))
-  }
-}
-
 #' nCores
 #' @export
 #'
@@ -39,6 +24,9 @@ copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
 #   #write.table(x, file = "clipboard-16384", sep = "\t", row.names = row.names, col.names = col.names, ...)
 # }
 
+
+# environments ------------------------------------------------------------
+
 #' Load data to a separate environment
 #'
 #' @param env new.env
@@ -52,9 +40,27 @@ copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
 #' dataset <- march2021.data$dataset
 #' }
 LoadToEnvironment <- function(RData, env = new.env()) {
+  stopifnot(is.character(RData))
+  stopifnot(grepl("[.]RData$", RData, ignore.case = T))
   load(RData, env)
   return(env)
 }
+
+
+#' my_env
+#' @param type type e.g., is.data.frame, is.character,
+my_env <- function(type = NULL) {
+  if (is.null(type)) {
+    #TODO: how to make sure it actually works in my environmnent and
+    #not the functions env....
+    ls.str()
+  } else {
+    stopifnot(is.character(type))
+    # TODO; make sure it's formatted so: is.data.frame, is.character,
+    names(Filter(type, mget(ls(all = T))))
+  }
+}
+
 
 #' unattach_all
 #'
@@ -91,7 +97,13 @@ unattach_all <- function() {
 
 #----Wrangling w/ Functions----
 #' embody expression for a function
+#'
+#' notes:
+#' env <- list(`~` = identity)
+#' body(e) <- eval(call("substitute", body(e), env), envir = baseenv())
+#'
 #' @param expr expr
+#'
 #' @export
 embody.expr <- function (expr) {
   fun <- function() {}
