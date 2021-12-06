@@ -14,6 +14,18 @@ tidy_my_data <- function(data, na.rm = TRUE, quiet = FALSE) {
     janitor::remove_constant(na.rm = na.rm, quiet = quiet)
 }
 
+#' remove_identical_cols
+#' Tested to be the fastest out of other possible methods!
+#' aka fun4
+#'
+#' @param data dataframe
+#'
+#' @return a tidier dataframe
+#' @export
+remove_identical_cols <- function(data) {
+  data[!duplicated(as.list(data))]
+}
+
 #' Force Bind two Dataframes
 #'
 #' Force bind (row-wise) two dataframes By forcing their columns to be the same
