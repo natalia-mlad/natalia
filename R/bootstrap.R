@@ -28,5 +28,5 @@ fit_fun <- function(split, ...) {
 #' @param i i
 #' @export
 corr.boot <- function(data, i) {
-  stats::cor(data10[i, "V1"], data10[i, "V2"], method='pearson')
+  stats::cor(data10[i, "V1"], data10[i, "V2"], method = 'pearson')
 }

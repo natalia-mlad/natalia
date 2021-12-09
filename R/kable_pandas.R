@@ -77,9 +77,7 @@ kable_pandas <- function(df, rmd = FALSE, show_rownames = FALSE) {
 
 #' Takes in an unconverted pandas.DataFrame via `reticulate::py_eval` and returns
 #' an R data.frame that has the look of a pandas.DataFrame
-#'
 #' @param pydf a python dataframe
-#'
 python_df <- function(pydf) {
   # if dataframe has a MultiIndex, reset index to turn them into regular columns
   # the first element is the Python class of the object
@@ -93,9 +91,9 @@ python_df <- function(pydf) {
   # - reduce decimal places for numerics
   # - missing values -> NaN
   rdf <- rdf %>%
-    mutate(across(where(lubridate::is.POSIXct), as.character)) %>%
-    mutate(across(where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
-    mutate(across(everything(), ~ ifelse(is.na(.x), "NaN", .x)))
+    mutate(across(tidyselect::where(lubridate::is.POSIXct), as.character)) %>%
+    mutate(across(tidyselect::where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
+    mutate(across(tidyselect::everything(), ~ ifelse(is.na(.x), "NaN", .x)))
   # 0-indexing for row index hehe
   rownames(rdf) <- as.numeric(rownames(rdf)) - 1
   rdf

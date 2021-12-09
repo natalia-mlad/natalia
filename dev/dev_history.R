@@ -66,18 +66,12 @@
 # fit_fun: no visible binding for global variable 'nonlin_form'
 # fit_fun: no visible global function definition for 'analysis'
 # fit_fun: no visible global function definition for 'tidy'
-#
 # fold_incr: no visible global function definition for 'analysis'
-# fuzzy.join: no visible global function definition for 'abort'
-#
 # get_poly: no visible binding for global variable 'is_continuous'
 # get_poly: no visible global function definition for 'N_distinct'
 # get_poly: no visible global function definition for 'get_interactions'
 # get_poly: no visible global function definition for 'model_matrix'
-#
-# python_df: no visible global function definition for 'where'
 # remap.distance: no visible global function definition for 'missingMsg'
-#
 # simulate_data_continuous: no visible global function definition for
 # 'rhcauchy'
 # simulate_data_discrete: no visible global function definition for

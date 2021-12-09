@@ -53,6 +53,7 @@ Suggests:
     targets,
     testthat (>= 3.0.0),
     textreadr,
+    tidyselect,
     tinytex,
     tm,
     tokenizers,

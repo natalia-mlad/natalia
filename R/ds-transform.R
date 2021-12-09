@@ -220,7 +220,8 @@ fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
     by_x[by_x == ""] <- by_y[by_x == ""]
     by <- list(x = by_x, y = by_y)
   } else {
-    abort("by must be a (named) character vector, list, or NULL")
+    stop("by must be a (named) character vector, list, or NULL")
+    #abort("by must be a (named) character vector, list, or NULL")
     #warning(""); return(NULL)
   }
   #check_join_vars(by$x, x_names)
@@ -427,10 +428,8 @@ simulate_data_discrete <- function() {
 #' X_train <- get_poly(mtcars[1:20,], 4, 2)
 #' X_test <- get_poly(mtcars[21:32,], model_formula = attributes(X_train)$formula)
 #' }
-get_poly <- function(xdata = NULL, deg=1, maxInteractDeg = deg,
-                     Xy = NULL, model_formula = NULL, standardize = FALSE,
-                     intercept = FALSE) {
-
+get_poly <- function(xdata = NULL, deg = 1, maxInteractDeg = deg, Xy = NULL,
+                     model_formula = NULL, standardize = FALSE, intercept = FALSE) {
   if(sum(is.null(xdata) + is.null(Xy)) != 1)
     stop("please provide get_poly() xdata or Xy (but not both).")
 
