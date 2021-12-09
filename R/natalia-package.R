@@ -14,7 +14,6 @@
 #' @importFrom utils sessionInfo
 #' @importFrom utils write.table
 ## usethis namespace: end
-#' @import usethis
 #' @import janitor
 #' @import dplyr
 #' @import purrr

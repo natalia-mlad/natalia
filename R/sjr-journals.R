@@ -1,13 +1,11 @@
 #' clean journal tables
 #'
+#' see fs::path_home("OneDrive/PhD Psychology/
+#' 01 - Investigation - Developing Creditworthiness Measure/
+#' 01 - Study 1a - Systematic Review/journals.R")
 #' @param df df
-#'
 #' @return cleaned df
 #' @export
-#'
-#' @examples
-#' see "OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/01 - Study 1a - Systematic Review/journals.R"
-#'
 clean_journal_tables <- function(df) {
   output <- strsplit(df$Categories, "; ")
   output <- sapply(output, '[', seq(max(sapply(output, length)))) #lapply or map is better?

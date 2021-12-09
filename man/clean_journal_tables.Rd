@@ -13,9 +13,7 @@ clean_journal_tables(df)
 cleaned df
 }
 \description{
-clean journal tables
-}
-\examples{
-see "OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/01 - Study 1a - Systematic Review/journals.R"
-
+see fs::path_home("OneDrive/PhD Psychology/
+01 - Investigation - Developing Creditworthiness Measure/
+01 - Study 1a - Systematic Review/journals.R")
 }

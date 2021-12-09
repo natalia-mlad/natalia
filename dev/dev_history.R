@@ -17,6 +17,91 @@
 #  edit_rstudio_prefs() edit_git_config() edit_git_ignore()
 ###
 
+
+# latest r cmd check results: ####
+# -- R CMD check results ------------------ natalia 0.0.0.1 ----
+#   Duration: 1m 5.3s
+#
+# > checking top-level files ... NOTE
+# Non-standard files/directories found at top level:
+#   'README.nb.html' 'dev'
+#
+# > checking R code for possible problems ... NOTE
+# bootReg: no visible binding for global variable 'SumOpportunitiesToPay'
+# change.range: no visible binding for global variable 'training'
+# change.range: no visible binding for global variable 'col_names'
+# change.range: no visible binding for global variable 'max.new'
+# change.range: no visible binding for global variable 'min.new'
+# change.range: no visible binding for global variable 'x'
+# clean_journal_tables: no visible binding for global variable 'V1'
+# clean_journal_tables: no visible binding for global variable 'SJR'
+# clean_journal_tables: no visible binding for global variable 'Cites /
+#     Doc. (2years)'
+# clean_journal_tables: no visible binding for global variable 'Ref. /
+#     Doc.'
+# corr.boot: no visible binding for global variable 'data10'
+# corr_simple: no visible binding for global variable 'df'
+# corr_simple: no visible binding for global variable 'Freq'
+# df_to_df: no visible binding for global variable 'link'
+#
+# flat_cor_mat: no visible binding for global variable 'column'
+# flat_cor_mat: no visible binding for global variable 'cor'
+# flat_cor_mat: no visible binding for global variable 'p'
+#
+# identify_redundant_ids: no visible binding for global variable 'ids'
+# identify_redundant_ids: no visible binding for global variable
+# 'factors'
+# identify_redundant_ids: no visible binding for global variable 'dist'
+# identify_redundant_ids: no visible binding for global variable
+# 'is_nested'
+# isOrd: no visible binding for global variable '.'
+# make_article: no visible binding for global variable 'article'
+# page_to_df_recursive: no visible binding for global variable '.'
+# polytomize_data: no visible binding for global variable 'exLong'
+
+###
+# my_env: warning in ls(all = T): partial argument match of 'all' to
+# 'all.names'
+#
+# fit_fun: no visible binding for global variable 'nonlin_form'
+# fit_fun: no visible global function definition for 'analysis'
+# fit_fun: no visible global function definition for 'tidy'
+#
+# fold_incr: no visible global function definition for 'analysis'
+# fuzzy.join: no visible global function definition for 'abort'
+#
+# get_poly: no visible binding for global variable 'is_continuous'
+# get_poly: no visible global function definition for 'N_distinct'
+# get_poly: no visible global function definition for 'get_interactions'
+# get_poly: no visible global function definition for 'model_matrix'
+#
+# python_df: no visible global function definition for 'where'
+# remap.distance: no visible global function definition for 'missingMsg'
+#
+# simulate_data_continuous: no visible global function definition for
+# 'rhcauchy'
+# simulate_data_discrete: no visible global function definition for
+# 'rhcauchy'
+
+###
+# Undefined global functions or variables:
+# . Cites / Doc. (2years) Freq N_distinct Ref. / Doc. SJR
+# SumOpportunitiesToPay V1 abort analysis article check_file_name
+# col_names column cor data10 df dist exLong factors get_active_r_file
+# get_interactions ids is_continuous is_nested link max.new min.new
+# missingMsg model_matrix nonlin_form p rhcauchy slug tidy training
+# where x
+#
+# Consider adding
+# importFrom("base", "/")
+# importFrom("stats", "cor", "df", "dist")
+# to your NAMESPACE file.
+#
+# 0 errors v | 0 warnings v | 2 notes x
+#
+# R CMD check succeeded
+
+
 # Import From -------------------------------------------------------------
 library(origin)
 
@@ -78,11 +163,9 @@ path_home("OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthin
   origin::get_local_functions(path = .)
 
 
-#####
-path = path_home("OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/04 - Study 3 - Validating Measure/")
-
-x = dupree::dupree_dir(path = path, recursive = F)
-
+# {dupree} ####
+path <- path_home("OneDrive/PhD Psychology/01 - Investigation - Developing Creditworthiness Measure/04 - Study 3 - Validating Measure/")
+x <- dupree::dupree_dir(path = path, recursive = F)
 View(as_tibble(x))
 # x = x[[1]]
 
