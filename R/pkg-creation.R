@@ -2,9 +2,12 @@
 #' @param commit_msg Git Commit Message
 #' @export
 quick_git <- function(commit_msg = NULL){
-  n <- nrow(git_status()) # if(n == 0) stop("No")
-  usethis::ui_info("{n} new unstaged files")
+  changes <- git_status()
+  n <- nrow(changes) # if(n == 0) stop("No")
+  usethis::ui_info("{n} unstaged files")
   if(n > 0){
+    # files <- paste(changes$file, collapse = "', '")
+    usethis::ui_info("{usethis::ui_path(changes$file)}")
     # git_add()/git_rm() #e.g., git_add(c("dev/", "man/"))
     git_add(".")
     usethis::ui_done("Files staged")

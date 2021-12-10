@@ -25,7 +25,6 @@ Imports:
     tidyr,
     utils
 Suggests: 
-    assertr,
     cleanNLP,
     cli,
     CodeDepends,
