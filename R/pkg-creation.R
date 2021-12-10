@@ -15,6 +15,7 @@ quick_git <- function(commit_msg = NULL){
 
   if(is.null(commit_msg))
     stop("You need to include a commit message with your commit!")
+  usethis::ui_info("Commit Message: {usethis::ui_field(commit_msg)}")
   git_commit(commit_msg) #now commit
   usethis::ui_done("Git commit")
 
@@ -23,6 +24,79 @@ quick_git <- function(commit_msg = NULL){
 
   usethis::ui_info("Here's a log of your most recent commits")
   return(git_log())
+}
+
+
+# git_setup ---------------------------------------------------------------
+#' git_setup (quite experimental atm)
+#'
+#' @param repo_name character vector
+#' @param private T/F
+#' @param user default uses gh::gh_whoami()$"login"
+#' @param git_ignore additional folders or files to pass onto .gitignore.
+#'
+#' @export
+git_setup <- function(repo_name = NULL, private = TRUE,
+                      user = gh::gh_whoami()$"login", git_ignore = NULL) {
+  stopifnot(!is.null(repo_name))
+  # also do a quick regex check for illegal repo names (e.g., no .?)
+  # Don't Commit & Restart
+  usethis::use_git()
+
+  # 2. Control what we commit + do a first commit!
+  usethis::git_vaccinate()
+  # check regarding files over the 100Mb limit!
+  usethis::use_git_ignore(c(git_ignore, "sessionInfoLog", "/history/"))
+  # Then, commit some changes locally
+
+  # 3. Create the origin on github:
+  new_repo <- paste0(user, "/", repo_name)
+  ghee::gh_repos_create("natalia-mlad/relevant-references", private = private)
+
+  # 4. Do some quick checks:
+  # First, check that there isn't one already with usethis:::check_no_origin()
+  # If there's one, then wipe it off with:
+  usethis::use_git_remote("origin", url = NULL, overwrite = TRUE)
+  # Then, check again, if necessary, with usethis:::check_no_origin()
+  # Also, check that:
+  stopifnot(identical(usethis::git_default_branch(), git_branch()))
+
+  # 5. Add this origin as the remote + do first push!
+  my_repo <- gh::gh("GET /user/repos", type = "owner", sort = "created") %>%
+    jsonlite::toJSON(.) %>% jsonlite::fromJSON(.) %>% tibble() %>%
+    select(name, html_url, clone_url, svn_url, ssh_url, git_url) %>%
+    unnest(c(name, html_url, clone_url, svn_url, ssh_url, git_url)) %>%
+    slice(1)
+  # origin_url <- my_repo$clone_url; use_git_remote("origin", origin_url)
+  usethis::use_git_remote("origin", my_repo$clone_url)
+  # ^ because usethis::git_protocol() is "https"
+  git_push(
+    remote = "origin",
+    set_upstream = TRUE,
+    repo = path_wd(),
+    verbose = TRUE
+  )
+  # git_branch_list(local = TRUE, repo = repo) %>% nrow() #check its 1
+
+  # 6. All done! Check out the repo on github!
+  usethis::ui_done("All done! Check out the repo on GitHub!")
+  return(utils::browseURL(my_repo$html_url))
+
+  # ##
+  # # 7. Bonus - Can also add some links/descriptions/etc:
+  # repo_desc <- if(usethis:::is_package()) usethis:::package_data()$Title %||% "" else ""
+  # repo_desc <- gsub("\n", " ", repo_desc)
+  # repo_spec <- glue::glue("{owner}/{repo_name}")
+  # # visibility <- "private"
+  # # visibility_string <- if(visibility == "public") "" else glue::glue("{visibility} ")
+  # use_github_links()
+  # # √ Setting URL field in DESCRIPTION to 'https://github.com/natalia-mlad/relevant-references'
+  # # √ Setting BugReports field in DESCRIPTION to 'https://github.com/natalia-mlad/relevant-references/issues'
+  # # There is 1 uncommitted file:
+  # #   * 'DESCRIPTION'
+  # # Is it ok to commit it?
+  # # 1: Not now
+  # ##
 }
 
 # Work in progress: -------------------------------------------------------
@@ -57,7 +131,7 @@ slug <- function (x, ext) {
 #' check_file_name
 #' @param name name
 check_file_name <- function (name) {
-  if (!is_string(name)) {
+  if (!rlang::is_string(name)) {
     usethis::ui_stop("Name must be a single string")
   }
   if (!valid_file_name(path_ext_remove(name))) {

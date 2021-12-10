@@ -91,10 +91,24 @@ python_df <- function(pydf) {
   # - reduce decimal places for numerics
   # - missing values -> NaN
   rdf <- rdf %>%
-    mutate(across(tidyselect::where(lubridate::is.POSIXct), as.character)) %>%
-    mutate(across(tidyselect::where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
-    mutate(across(tidyselect::everything(), ~ ifelse(is.na(.x), "NaN", .x)))
+    mutate(across(where(lubridate::is.POSIXct), as.character)) %>%
+    mutate(across(where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
+    mutate(across(everything(), ~ ifelse(is.na(.x), "NaN", .x)))
   # 0-indexing for row index hehe
   rownames(rdf) <- as.numeric(rownames(rdf)) - 1
   rdf
+}
+
+#' copy of tidyselect:::where
+#' @param fn fn
+where <- function(fn) {
+  predicate <- rlang::as_function(fn)
+  function(x, ...) {
+    out <- predicate(x, ...)
+    if (!rlang::is_bool(out)) {
+      # stop("`where()` must be used with functions that return `TRUE` or `FALSE`.")
+      rlang::abort("`where()` must be used with functions that return `TRUE` or `FALSE`.")
+    }
+    out
+  }
 }
