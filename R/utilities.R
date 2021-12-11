@@ -26,13 +26,20 @@ copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
 
 #' @title luna
 #' alias for length(unique(na.omit(x)))
-#'
 #' @param x x
-#'
 #' @export
 luna <- function(x) {
   length(unique(stats::na.omit(x)))
 }
+
+#' @title suna
+#' alias for sort(unique(na.omit(x)))
+#' @param x x
+#' @export
+suna <- function(x) {
+  sort(unique(stats::na.omit(x)))
+}
+
 
 # na.omit:
 # function (object, ...) {
