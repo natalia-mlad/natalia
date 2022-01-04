@@ -2,9 +2,7 @@
 % Please edit documentation in R/ds-tidy.R
 \name{remove_identical_cols}
 \alias{remove_identical_cols}
-\title{remove_identical_cols
-Tested to be the fastest out of other possible methods!
-aka fun4}
+\title{Remove Identical Cols}
 \usage{
 remove_identical_cols(data)
 }
@@ -15,7 +13,8 @@ remove_identical_cols(data)
 a tidier dataframe
 }
 \description{
-remove_identical_cols
-Tested to be the fastest out of other possible methods!
-aka fun4
+Remove Identical Cols
+}
+\details{
+Tested to be the fastest out of other possible methods! aka fun4
 }

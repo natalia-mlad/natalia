@@ -14,8 +14,9 @@ polytomize_data <- function(x) {
 }
 
 #' removes leading zero before decimals and rounds number to two decimals
-#' @param x x
+#' @param x numeric vector
 #' @param k number of decimals
+#' @returns character vector
 #' @export
 nozero <- function(x, k = 2) {
   sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))

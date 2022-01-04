@@ -7,9 +7,12 @@
 nozero(x, k = 2)
 }
 \arguments{
-\item{x}{x}
+\item{x}{numeric vector}
 
 \item{k}{number of decimals}
+}
+\value{
+character vector
 }
 \description{
 removes leading zero before decimals and rounds number to two decimals

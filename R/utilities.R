@@ -8,7 +8,7 @@ how_many_cores_you_got <- function() {
   return(nCores)
 }
 
-#' @title Copy a dataframe or matrix to clipboard
+#' Copy a dataframe or matrix to clipboard
 #'
 #' @param x the dataframe or matrix
 #' @param row.names copy the row names? TRUE by default
@@ -16,7 +16,7 @@ how_many_cores_you_got <- function() {
 #' @param ... dots argument
 #'
 #' @export
-copy.table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
+copy_table <- function(x, row.names = TRUE, col.names = TRUE, ...) {
   write.table(x, "clipboard-256", sep = "\t", row.names = row.names, col.names = col.names, ...)
 }
 # copy <- function(x, row.names = FALSE, col.names = TRUE, ...) {
@@ -38,6 +38,24 @@ luna <- function(x) {
 #' @export
 suna <- function(x) {
   sort(unique(stats::na.omit(x)))
+}
+
+#' letters_to_numbers
+#'
+#' @param x character vector
+#'
+#' @return interger vector
+#' @export
+#'
+#' @examples
+#' letters_to_numbers("a")
+#' letters_to_numbers(c("p", "n"))
+letters_to_numbers <- function(x) {
+  # stopifnot(length(x) > 0)
+  stopifnot(is.character(x))
+  letter <- tolower(x)
+  myLetters <- letters[1:26]
+  match(letter, myLetters)
 }
 
 

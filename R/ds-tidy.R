@@ -1,29 +1,25 @@
-#' Tidy my Data
-#'
-#' @param data dataframe
-#' @param na.rm T/F
-#' @param quiet T/F
-#'
-#' @return a tidier dataframe
-#'
-#' @export
-#'
-tidy_my_data <- function(data, na.rm = TRUE, quiet = FALSE) {
-  data %>%
-    janitor::remove_empty(which = c("rows", "cols"), quiet = quiet) %>%
-    janitor::remove_constant(na.rm = na.rm, quiet = quiet)
-}
+# Do ----------------------------------------------------------------------
 
-#' remove_identical_cols
-#' Tested to be the fastest out of other possible methods!
-#' aka fun4
-#'
+#' Remove Identical Cols
+#' @details Tested to be the fastest out of other possible methods! aka fun4
 #' @param data dataframe
-#'
 #' @return a tidier dataframe
 #' @export
 remove_identical_cols <- function(data) {
   data[!duplicated(as.list(data))]
+}
+
+#' Tidy my Data
+#' @param data dataframe
+#' @param na.rm T/F
+#' @param quiet T/F
+#' @return a tidier dataframe
+#' @export
+tidy_my_data <- function(data, na.rm = TRUE, quiet = FALSE) {
+  data <- data %>%
+    janitor::remove_empty(which = c("rows", "cols"), quiet = quiet) %>%
+    janitor::remove_constant(na.rm = na.rm, quiet = quiet)
+  remove_identical_cols(data)
 }
 
 #' Force Bind two Dataframes
@@ -40,6 +36,9 @@ force_bind = function(df1, df2) {
   colnames(df2) = colnames(df1)
   bind_rows(df1, df2)
 }
+
+
+# Identify ----------------------------------------------------------------
 
 #' Identify ordinary variables
 #'
