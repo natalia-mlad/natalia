@@ -9,9 +9,9 @@ duckduckgo <- function(searchTerms) {
     paste0(duckBase, searchQuery, "&kp=-2")
     # see https://duckduckgo.com/params
   )
-  page <- read_html(link)
+  page <- rvest::read_html(link)
   page %>%
-    html_elements(".results") %>%
-    html_children() %>%
-    html_text2()
+    rvest::html_elements(".results") %>%
+    rvest::html_children() %>%
+    rvest::html_text2()
 }
