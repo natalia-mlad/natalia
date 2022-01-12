@@ -2,15 +2,27 @@
 # data <- as.data.frame(df[,c(4:29)])
 
 #' polytomize data to demo ordinal models
-#' @param x ?a vector?
+#' @param df a dataframe where all numeric
+#' @param thresholds a numeric vector of cutoff points for the
+#' category thresholds; provide one fewer than the required number
+#' of categories (e.g., c(-0.5, 1) for three categories)
 #' @export
-polytomize_data <- function(x) {
-  thresholds <- c(-Inf, -0.5, 1, Inf) # 3 categories
-  ordLong <- data.frame(lapply(exLong[-1], function(x) {
-    cut(x, breaks = thresholds, labels = FALSE)
+polytomize_data <- function(df, thresholds) {
+  # TODO: check if all numeric?
+  all_values <- flatten_dbl(df)
+  stopifnot(min(all_values) < min(thresholds))
+  stopifnot(max(all_values) > max(thresholds))
+
+  # TODO: check if categories are sensible?
+  n <- length(thresholds) + 1
+  usethis::ui_info("Turning data into {n} categories.")
+
+  breaks <- c(-Inf, thresholds, Inf)
+  out <- data.frame(lapply(df, function(x) {
+    cut(x, breaks = breaks, labels = FALSE)
   }))
-  ordLong$ID <- 1:nrow(ordLong)
-  return(ordLong)
+  out$ID <- 1:nrow(out)
+  return(out)
 }
 
 
