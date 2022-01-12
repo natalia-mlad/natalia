@@ -9,7 +9,7 @@ remap.distance(data, message = TRUE)
 \arguments{
 \item{data}{data}
 
-\item{message}{TF}
+\item{message}{T/F}
 }
 \description{
 remap.distance

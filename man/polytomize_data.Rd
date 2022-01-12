@@ -4,10 +4,14 @@
 \alias{polytomize_data}
 \title{polytomize data to demo ordinal models}
 \usage{
-polytomize_data(x)
+polytomize_data(df, thresholds)
 }
 \arguments{
-\item{x}{?a vector?}
+\item{df}{a dataframe where all numeric}
+
+\item{thresholds}{a numeric vector of cutoff points for the
+category thresholds; provide one fewer than the required number
+of categories (e.g., c(-0.5, 1) for three categories)}
 }
 \description{
 polytomize data to demo ordinal models
