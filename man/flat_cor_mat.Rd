@@ -4,12 +4,12 @@
 \alias{flat_cor_mat}
 \title{Simple formatting of a correlation matrix}
 \usage{
-flat_cor_mat(cor_r, cor_p)
+flat_cor_mat(cor_r, cor_p = NA)
 }
 \arguments{
 \item{cor_r}{correlation matrix with r values}
 
-\item{cor_p}{matrix of correlation p values}
+\item{cor_p}{(optional) matrix of correlation p values}
 }
 \value{
 Column 1 : row names (variable 1 for the correlation test)
