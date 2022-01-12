@@ -13,28 +13,10 @@ polytomize_data <- function(x) {
   return(ordLong)
 }
 
-#' removes leading zero before decimals and rounds number to two decimals
-#' @param x numeric vector
-#' @param k number of decimals
-#' @returns character vector
-#' @export
-nozero <- function(x, k = 2) {
-  sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))
-}
-
-#' formats numbers to no more or less than two decimals
-#' @param x x
-#' @param k number of decimals
-#' @export
-zero <- function(x, k = 2) {
-  format(round(x, k), nsmall = k)
-}
 
 #' remap.distance
-#'
 #' @param data data
-#' @param message TF
-#'
+#' @param message T/F
 #' @export
 remap.distance <- function(data, message = TRUE) {
   if(missing(data)) missingMsg('dat')
@@ -144,6 +126,8 @@ test.nest <- function(x, y) {
   }
 }
 
+
+# Stats: ####
 
 #' spearman_brown
 #'

@@ -200,6 +200,24 @@ capwords <- function(s, strict = FALSE) {
   sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
 }
 
+#' removes leading zero before decimals and rounds number to two decimals
+#' @param x numeric vector
+#' @param k number of decimals
+#' @returns character vector
+#' @export
+nozero <- function(x, k = 2) {
+  sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))
+}
+
+#' formats numbers to no more or less than two decimals
+#' @param x x
+#' @param k number of decimals
+#' @export
+zero <- function(x, k = 2) {
+  format(round(x, k), nsmall = k)
+}
+
+
 #### NOTES ####
 ###
 #> embody.expr:
