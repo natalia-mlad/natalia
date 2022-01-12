@@ -8,6 +8,8 @@
 #' of categories (e.g., c(-0.5, 1) for three categories)
 #' @export
 polytomize_data <- function(df, thresholds) {
+  # Source:
+  # OneDrive/PhD Psychology/01 - R Project/01 - SEM/Extending Structural Equation Models of Generalizability Theory/SEM4GT.R
   # TODO: check if all numeric?
   all_values <- flatten_dbl(df)
   stopifnot(min(all_values) < min(thresholds))
@@ -21,7 +23,7 @@ polytomize_data <- function(df, thresholds) {
   out <- data.frame(lapply(df, function(x) {
     cut(x, breaks = breaks, labels = FALSE)
   }))
-  out$ID <- 1:nrow(out)
+  # out$ID <- 1:nrow(out)
   return(out)
 }
 
