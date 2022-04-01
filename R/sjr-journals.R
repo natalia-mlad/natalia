@@ -32,3 +32,5 @@ clean_journal_tables <- function(df) {
   # clean_names(df)
   return(df)
 }
+
+
