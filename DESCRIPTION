@@ -23,7 +23,8 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    utils
+    utils,
+    xml2
 Suggests: 
     cleanNLP,
     cli,
