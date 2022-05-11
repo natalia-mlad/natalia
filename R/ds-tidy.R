@@ -105,13 +105,15 @@ is.count <- function(x, tol = .Machine$double.eps^0.5) {
 #' @export
 #'
 identify_redundant_ids <- function(data, char.dist = 4) {
-  data <- janitor::remove_constant(data, quiet = F)
+  data <- janitor::remove_constant(data, quiet = FALSE)
   x <- data %>% keep(is.numeric) %>% names()
   y <- names(data)[!(names(data) %in% x)]
-  # y <- names(data)[names(data) %notin% x]
+  # TODO: say: "creating combin_mat"
+  # TODO: this part is too slow!!
   combin_mat <- expand.grid(ids = x, factors = y, stringsAsFactors = F) %>%
     mutate(dist = adist(ids, factors, ignore.case = T, useBytes = T) %>% diag()) %>%
     filter(dist <= char.dist)
+  # TODO: say: ...
   combin_mat %>%
     mutate(is_nested = map2_lgl(combin_mat$ids, combin_mat$factors, function(x, y) {
       if(length(unique(data[, x])) == 1) return(NA)
@@ -124,6 +126,7 @@ identify_redundant_ids <- function(data, char.dist = 4) {
       #   if(m[m > 0.03 & m < 0.97] %>% length() == 0) return(TRUE)
       #   else return(FALSE)
       # } else return(is_nested)
-    })) %>% filter(is_nested == TRUE) %>%
+    })) %>%
+    filter(is_nested == TRUE) %>%
     pull(ids)
 }
