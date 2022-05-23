@@ -3,7 +3,6 @@
 \name{cor_cor}
 \alias{cor_cor}
 \title{Create and test correlation-based prediction models
-
 Training and validation predictors can be different (x1, x2)}
 \usage{
 cor_cor(x1, y, x2 = NULL, prop = 0.67)
@@ -19,6 +18,5 @@ cor_cor(x1, y, x2 = NULL, prop = 0.67)
 }
 \description{
 Create and test correlation-based prediction models
-
 Training and validation predictors can be different (x1, x2)
 }

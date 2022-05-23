@@ -1,5 +1,4 @@
-#' @title Create and test correlation-based prediction models
-#'
+#' Create and test correlation-based prediction models
 #' Training and validation predictors can be different (x1, x2)
 #'
 #' @param x1 training predictors (dataframe or tibble)
@@ -18,7 +17,7 @@ cor_cor <- function(x1, y, x2 = NULL, prop = .67) {
     stats::cor(y[-s])
 }
 
-#' @title Function to create and validate elastic net prediction models
+#' Function to create and validate elastic net prediction models
 #'
 #' @param x1 training predictors (dataframe or tibble)
 #' @param y response variable
