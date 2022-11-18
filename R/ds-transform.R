@@ -193,6 +193,9 @@ ttest <- function(n, loc, scale) {
 ##
 
 #' Join two tables using fuzzy matching
+#' TODO: not the most accurate implementation for some cases tbh
+#' + auto join based on what type of join is desired
+#' + remove the JOIN column at the end
 #'
 #' Fuzzy loop
 #'
@@ -234,10 +237,20 @@ fuzzy.join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
   #x$adist <- adist(x$FullName.x, x$FullName.y, ignore.case = T, useBytes = T, partial = T) %>% diag()
   df.x$JOIN <- ""
   for (i in 1:nrow(df.x)) {
-    temp <- agrep(df.x[[x_by]][i], df.y[[y_by]], value = TRUE, max.distance = max.distance,
-                  ignore.case = ignore.case, useBytes = useBytes)
-    temp <- paste0(temp, "")
-    df.x$JOIN[i] <- temp
+    # skip the loop if there's already a perfect match
+    if(df.x[[x_by]][i] %in% df.y[[y_by]]) {
+      df.x$JOIN[i] <- df.x[[x_by]][i]
+    } else {
+      temp <- agrep(df.x[[x_by]][i], df.y[[y_by]], value = TRUE, max.distance = max.distance,
+                    ignore.case = ignore.case, useBytes = useBytes)
+      if (length(temp) > 1) {
+        temp_value <- agrep(df.x[[x_by]][i], df.y[[y_by]], value = FALSE, max.distance = max.distance,
+                            ignore.case = ignore.case, useBytes = useBytes)
+        temp <- temp[which(temp_value == max(temp_value))]
+      }
+      temp <- paste0(temp, "") # what does this do?
+      df.x$JOIN[i] <- temp
+    }
   }
   percent_coverage <- sum(is.na(df.x$JOIN))/nrow(df.x)
   if(percent_coverage > 0.33) {

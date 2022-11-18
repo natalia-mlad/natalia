@@ -2,7 +2,12 @@
 % Please edit documentation in R/ds-transform.R
 \name{fuzzy.join}
 \alias{fuzzy.join}
-\title{Join two tables using fuzzy matching}
+\title{Join two tables using fuzzy matching
+TODO: not the most accurate implementation for some cases tbh
+\itemize{
+\item auto join based on what type of join is desired
+\item remove the JOIN column at the end
+}}
 \usage{
 fuzzy.join(
   df.x,

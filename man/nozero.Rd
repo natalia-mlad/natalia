@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{nozero}
 \alias{nozero}
-\title{removes leading zero before decimals and rounds number to two decimals}
+\title{removes leading zero before decimals and rounds number to two decimals (by default)}
 \usage{
 nozero(x, k = 2)
 }
@@ -15,5 +15,5 @@ nozero(x, k = 2)
 character vector
 }
 \description{
-removes leading zero before decimals and rounds number to two decimals
+removes leading zero before decimals and rounds number to two decimals (by default)
 }
