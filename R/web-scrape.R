@@ -1,5 +1,7 @@
-
-#' scrape url
+#' Scrape all the internal pages of a relatively simple website
+#'
+#' Relies on pages being linked to each other.
+#' Has not been optimised (TODO), but works pretty smoothly in practice!
 #'
 #' @param my_url url of the head/start page
 #' @param path dir path where to save the html files
@@ -8,8 +10,9 @@
 #' @export
 #'
 #' @examples
-#' # scrapeurl("https://loal.app/", path_home("OneDrive/PhD Psychology/loal-website-scrape"))
-#' # "https://www.oakam.com/" %>% scrapeurl(path_home("OneDrive/PhD Psychology/oakam-website-scrape"))
+#' \dontrun{
+#' scrapeurl("https://loal.app/", path_home("OneDrive/PhD Psychology/loal-website-scrape"))
+#' }
 #'
 scrapeurl <- function(my_url, path) {
   x <- grab_links(my_url)
@@ -48,14 +51,15 @@ scrapeurl <- function(my_url, path) {
 }
 
 
+# internals ---------------------------------------------------------------
+#' find all the unique links on a page
 #' @keywords internal
 grab_links <- function(my_url) {
-  # find all links on a page
   rvest::read_html(my_url) %>%
     rvest::html_elements("a") %>%
     rvest::html_attr("href") %>%
     unique()
-    # internal # stringr::str_subset(my_url) %>%
+  # stringr::str_subset(my_url) %>%
 }
 
 #' @keywords internal
@@ -64,15 +68,13 @@ save_pages <- function(my_url, filename) {
     xml2::write_xml(file = filename)
 }
 
-# recurse_links <- function(){}
-
+# TODO: recurse_links <- function(){}
 
 
 # duckduckgo search -------------------------------------------------------
-
 #' duckduckgo search
 #' @param searchTerms a character vector
-#' @return charracter vector
+#' @return character vector
 #' @export
 duckduckgo <- function(searchTerms) {
   duckBase <- "https://duckduckgo.com/html/"

@@ -2,18 +2,35 @@
 % Please edit documentation in R/wiki-scrape.R
 \name{wiki_grab_links}
 \alias{wiki_grab_links}
-\title{grab_wiki_links}
+\title{Grab Wikipedia links}
 \usage{
 wiki_grab_links(url, keep_duplicates = FALSE)
 }
 \arguments{
 \item{url}{character. the url of the wiki page}
 
-\item{keep_duplicates}{logical.}
+\item{keep_duplicates}{logical. FALSE by default}
 }
 \value{
 a character vector
 }
 \description{
-grab_wiki_links
+Scrape all the internal links from a given \href{https://en.wikipedia.org/}{Wikipedia} page.
+This will exclude any external links, links with colons, and the main page.
+Useful for various network analyses and quick scrapping from \href{https://en.wikipedia.org/}{Wikipedia}.
+}
+\examples{
+\dontrun{
+base_url = "https://en.wikipedia.org"
+page_name = "List_of_filename_extensions"
+url <- httr::modify_url(base_url, path = c("wiki", page_name))
+wiki_grab_links(url) \%>\%
+  paste0(base_url, .) \%>\%
+  str_subset(page_name) \%>\%  #keep pages that are part of this page
+  str_subset(paste0("^", url, "$"), negate = T) \%>\% #but remove identical to the url
+  str_remove_all("#.*") \%>\% #remove anchors
+  curl::curl_unescape() \%>\%
+  suna()
+}
+
 }

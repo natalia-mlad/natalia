@@ -10,7 +10,7 @@ duckduckgo(searchTerms)
 \item{searchTerms}{a character vector}
 }
 \value{
-charracter vector
+character vector
 }
 \description{
 duckduckgo search

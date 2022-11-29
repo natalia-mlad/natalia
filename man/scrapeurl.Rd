@@ -2,7 +2,7 @@
 % Please edit documentation in R/web-scrape.R
 \name{scrapeurl}
 \alias{scrapeurl}
-\title{scrape url}
+\title{Scrape all the internal pages of a relatively simple website}
 \usage{
 scrapeurl(my_url, path)
 }
@@ -15,10 +15,12 @@ scrapeurl(my_url, path)
 a character vector of all the urls scraped
 }
 \description{
-scrape url
+Relies on pages being linked to each other.
+Has not been optimised (TODO), but works pretty smoothly in practice!
 }
 \examples{
-# scrapeurl("https://loal.app/", path_home("OneDrive/PhD Psychology/loal-website-scrape"))
-# "https://www.oakam.com/" \%>\% scrapeurl(path_home("OneDrive/PhD Psychology/oakam-website-scrape"))
+\dontrun{
+scrapeurl("https://loal.app/", path_home("OneDrive/PhD Psychology/loal-website-scrape"))
+}
 
 }
