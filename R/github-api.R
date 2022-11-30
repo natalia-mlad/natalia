@@ -55,7 +55,7 @@ search_github <- function(my_query, max = 100, wait = 10) {
   }
 
   ## Results:
-  results <- tibble(jsonlite::fromJSON(jsonlite::toJSON(results)))
+  results <- dplyr::tibble(jsonlite::fromJSON(jsonlite::toJSON(results)))
   return(results)
 }
 # search_limit <- function()
@@ -72,10 +72,10 @@ fetch_repos <- function(username, .limit = Inf) {
     # , type = "sources"
     jsonlite::toJSON() %>%
     jsonlite::fromJSON() %>%
-    tibble() %>%
+    dplyr::tibble() %>%
     # TODO: sources only
     # 1:10; 41:64; 66:74 # -"mirror_url"
-    pull(full_name) %>%
+    dplyr::pull(full_name) %>%
     purrr::flatten_chr()
   # Parameters
   # type	string	query
@@ -92,10 +92,10 @@ fetch_repos <- function(username, .limit = Inf) {
 fetch_repos_contents <- function(repo_path, .limit = Inf) {
   paste0("GET /repos/", repo_path, "/contents/") %>%
     # head(2) %>%
-    map_df(~ gh::gh(.x, .limit = .limit) %>% jsonlite::toJSON() %>% jsonlite::fromJSON()) %>%
-    as_tibble() %>%
-    select(name, path, type, size, url, html_url, git_url) %>%
-    unnest() # %>%
+    purrr::map_df(~ gh::gh(.x, .limit = .limit) %>% jsonlite::toJSON() %>% jsonlite::fromJSON()) %>%
+    dplyr::as_tibble() %>%
+    dplyr::select(name, path, type, size, url, html_url, git_url) %>%
+    tidyr::unnest() # %>%
   # mutate(pkg = map_chr(html_url, ~parse_github_url(.x) %>% .$repo))
 }
 

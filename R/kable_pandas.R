@@ -20,7 +20,7 @@ kable_pandas <- function(df, rmd = FALSE, show_rownames = FALSE) {
     # unfortunately, we don't seem to have the ability to use slices
     # cleanly with `reticulate` yet, this hack assumes your dataframe with be
     # named `df` ... yikes! but works!
-    df <- reticulate::py_eval("df.loc[slice(None, ), ].iloc[:12,]")
+    df <- reticulate::py_eval("df.loc[dplyr::slice(None, ), ].iloc[:12,]")
   } else if (df$shape[[1]] > 20) {
     df <- df$head(20)
   }
@@ -91,9 +91,9 @@ python_df <- function(pydf) {
   # - reduce decimal places for numerics
   # - missing values -> NaN
   rdf <- rdf %>%
-    mutate(across(where(lubridate::is.POSIXct), as.character)) %>%
-    mutate(across(where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
-    mutate(across(everything(), ~ ifelse(is.na(.x), "NaN", .x)))
+    dplyr::mutate(dplyr::across(where(lubridate::is.POSIXct), as.character)) %>%
+    dplyr::mutate(dplyr::across(where(is.numeric), ~ as.numeric(formattable::digits(.x, 8)))) %>%
+    dplyr::mutate(dplyr::across(dplyr::everything(), ~ ifelse(is.na(.x), "NaN", .x)))
   # 0-indexing for row index hehe
   rownames(rdf) <- as.numeric(rownames(rdf)) - 1
   rdf

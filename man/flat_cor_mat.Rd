@@ -12,15 +12,24 @@ flat_cor_mat(cor_r, cor_p = NA)
 \item{cor_p}{(optional) matrix of correlation p values}
 }
 \value{
-Column 1 : row names (variable 1 for the correlation test)
-Column 2 : column names (variable 2 for the correlation test)
-Column 3 : the correlation coefficients
-Column 4 : the p-values of the correlations
+a table with 4 columns containing:
+\itemize{
+\item Column 1: row names (variable 1 for the correlation test)
+\item Column 2: column names (variable 2 for the correlation test)
+\item Column 3: the correlation coefficients
+\item Column 4: the p-values of the correlations
+}
 }
 \description{
 This function provides a simple formatting of a correlation matrix into a table with 4 columns containing:
-Column 1 : row names (variable 1 for the correlation test)
-Column 2 : column names (variable 2 for the correlation test)
-Column 3 : the correlation coefficients
-Column 4 : the p-values of the correlations
+}
+\details{
+\itemize{
+\item Column 1: row names (variable 1 for the correlation test)
+\item Column 2: column names (variable 2 for the correlation test)
+\item Column 3: the correlation coefficients
+\item Column 4: the p-values of the correlations
+}
+
+Useful for conditional reporting
 }

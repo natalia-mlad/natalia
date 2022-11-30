@@ -35,7 +35,7 @@ wiki_grab_links <- function(url, keep_duplicates = FALSE) {
   if (keep_duplicates) {
     return(links)
   } else {
-    return(unique(str_remove_all(links, "#.*")))
+    return(unique(stringr::str_remove_all(links, "#.*")))
   }
 }
 
@@ -67,7 +67,7 @@ wiki_recursive_links <- function(url, depth = 2) {
     for(i in 1:depth) out <- df_to_df(out)
   }
 
-  return(nest(out, links = c(link, link_name)))
+  return(tidyr::nest(out, links = c(link, link_name)))
 }
 
 
@@ -80,7 +80,7 @@ link_to_df <- function(relative_link) {
     paste0("https://en.wikipedia.org", .) %>%
     wiki_grab_links()
   link_name <- wiki_link_to_title(link)
-  return(tibble(page, link, link_name))
+  return(dplyr::tibble(page, link, link_name))
 }
 
 #' Given a tibble of pages given page(s) link(s) to, find their recursive links
@@ -88,7 +88,7 @@ link_to_df <- function(relative_link) {
 df_to_df <- function(first_df) {
   # TODO: sort out where some of the new_links actually redirect to already existing pages
   new_links <- first_df$link[!first_df$link_name %in% first_df$page]
-  second_df <- map_df(new_links, link_to_df)
+  second_df <- purrr::map_df(new_links, link_to_df)
   out <- rbind(first_df, second_df)
   return(out)
 }

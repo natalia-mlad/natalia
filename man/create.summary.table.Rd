@@ -2,7 +2,7 @@
 % Please edit documentation in R/ds-communicate.R
 \name{create.summary.table}
 \alias{create.summary.table}
-\title{create.summary.table}
+\title{create summary \link[janitor:tabyl]{janitor::tabyl} table}
 \usage{
 create.summary.table(df, new_names = NULL)
 }
@@ -13,8 +13,13 @@ create.summary.table(df, new_names = NULL)
 column names with as necessary (qs)}
 }
 \value{
-a pretty tabyl
+a pretty \code{\link[janitor:tabyl]{janitor::tabyl()}} table
 }
 \description{
-create.summary.table
+Produces counts, totals, and percentages across all the variables in a dataframe;
+with an option to present the variables with different names.
+}
+\details{
+Useful for quickly counting and presenting answers to multiple-choice questions
+in a report.
 }

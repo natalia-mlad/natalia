@@ -20,17 +20,17 @@ scrapeurl <- function(my_url, path) {
     stringr::str_subset(my_url)
 
   # Find all the urls:
-  out <- tibble(links_in) %>%
-    mutate(links_out = map(links_in, grab_links)) %>%
-    unnest(links_out) %>%
-    filter(str_detect(links_out, my_url)) %>%
+  out <- dplyr::tibble(links_in) %>%
+    dplyr::mutate(links_out = purrr::map(links_in, grab_links)) %>%
+    tidyr::unnest(links_out) %>%
+    dplyr::filter(stringr::str_detect(links_out, my_url)) %>%
     unique()
   new_links <- unique(out$links_out[!out$links_out %in% out$links_in])
   while (length(new_links) > 0) {
-    out <- tibble(links_in = new_links) %>%
-      mutate(links_out = map(links_in, grab_links)) %>%
-      unnest(links_out) %>%
-      filter(str_detect(links_out, my_url)) %>%
+    out <- dplyr::tibble(links_in = new_links) %>%
+      dplyr::mutate(links_out = purrr::map(links_in, grab_links)) %>%
+      tidyr::unnest(links_out) %>%
+      dplyr::filter(stringr::str_detect(links_out, my_url)) %>%
       rbind(out) %>%
       unique()
     new_links <- unique(out$links_out[!out$links_out %in% out$links_in])
@@ -41,10 +41,10 @@ scrapeurl <- function(my_url, path) {
   all_filenames <- paste0(path, "/page", 1:length(all_pages), ".html")
 
   usethis::ui_done("Found {length(all_pages)} pages.\n")
-  usethis::ui_todo("Saving them to {ui_path(path)}.\n")
+  usethis::ui_todo("Saving them to {usethis::ui_path(path)}.\n")
 
-  dir_create(path)
-  walk2(all_pages, all_filenames, save_pages)
+  fs::dir_create(path)
+  purrr::walk2(all_pages, all_filenames, save_pages)
   cat(all_pages, file = paste0(path, "/all_pages.txt"), sep = "\n")
 
   return(all_pages)

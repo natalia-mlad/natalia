@@ -2,20 +2,21 @@
 % Please edit documentation in R/ds-communicate.R
 \name{quick_summary}
 \alias{quick_summary}
-\title{quick_summary}
+\title{Quick Summary}
 \usage{
 quick_summary(df, variable, desc = TRUE)
 }
 \arguments{
-\item{df}{the dataframe}
+\item{df}{dataframe}
 
-\item{variable}{the var}
+\item{variable}{the variable that you want to summarise by}
 
-\item{desc}{logical. default TRUE}
+\item{desc}{logical; Order by descending order? Default is TRUE.}
 }
 \value{
 summarised df
 }
 \description{
-quick_summary
+The quick way of doing the group_by(), summarise(), arrange() routine
+that I always seem to do.
 }

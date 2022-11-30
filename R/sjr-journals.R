@@ -19,12 +19,12 @@ clean_journal_tables <- function(df) {
     names(x) <- names(y)
     y <- rbind(y, x)
   }
-  y <- y %>% filter(!is.na(V1)) %>% arrange(V1)
+  y <- y %>% dplyr::filter(!is.na(V1)) %>% dplyr::arrange(V1)
   y$n <- rep(1, nrow(y))
-  y <- y %>% pivot_wider(names_from = V1, values_from = n, values_fill = 0)
+  y <- y %>% tidyr::pivot_wider(names_from = V1, values_from = n, values_fill = 0)
   df <- df %>%
-    full_join(y, by = "id") %>%
-    mutate(
+    dplyr::full_join(y, by = "id") %>%
+    dplyr::mutate(
       SJR = as.numeric(gsub(",", ".", SJR)),
       `Cites / Doc. (2years)` = as.numeric(gsub(",", ".", `Cites / Doc. (2years)`)),
       `Ref. / Doc.` = as.numeric(gsub(",", ".", `Ref. / Doc.`))

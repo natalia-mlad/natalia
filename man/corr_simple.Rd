@@ -4,13 +4,17 @@
 \alias{corr_simple}
 \title{corr_simple}
 \usage{
-corr_simple(data = df, sig = 0.5)
+corr_simple(data, sig = 0.5, ...)
 }
 \arguments{
-\item{data}{df}
+\item{data}{a dataframe}
 
-\item{sig}{numeric}
+\item{sig}{numeric; the absolute correlation value above which the correlation is considered notable (.5 by default)}
+
+\item{...}{further arguments for \code{\link[corrplot:corrplot]{corrplot::corrplot()}}}
 }
 \description{
-corr_simple
+A small basic function useful for quickly seeing notable correlations.
+Good for quick exploration/checking.
+Prints a table and produces a plot.
 }

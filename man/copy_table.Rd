@@ -13,7 +13,7 @@ copy_table(x, row.names = TRUE, col.names = TRUE, ...)
 
 \item{col.names}{copy the column names? TRUE by default}
 
-\item{...}{dots argument}
+\item{...}{dots argument passed on to \code{\link[utils:write.table]{utils::write.table()}}}
 }
 \description{
 Copy a dataframe or matrix to clipboard

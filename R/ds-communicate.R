@@ -1,86 +1,51 @@
-#' create.summary.table
+# Count Summaries ---------------------------------------------------------
+
+#' Quick Summary
+#'
+#' The quick way of doing the group_by(), summarise(), arrange() routine
+#' that I always seem to do.
+#'
+#' @param df dataframe
+#' @param variable the variable that you want to summarise by
+#' @param desc logical; Order by descending order? Default is TRUE.
+#'
+#' @return summarised df
+#' @export
+quick_summary <- function(df, variable, desc = TRUE) {
+  out <- df %>%
+    dplyr::group_by({{variable}}) %>%
+    dplyr::summarise(n = dplyr::n())
+  if (desc) {
+    return(dplyr::arrange(out, dplyr::desc(n)))
+  } else {
+    return(dplyr::arrange(out, n))
+  }
+}
+
+
+#' create summary [janitor::tabyl] table
+#'
+#' Produces counts, totals, and percentages across all the variables in a dataframe;
+#' with an option to present the variables with different names.
+#'
+#' Useful for quickly counting and presenting answers to multiple-choice questions
+#' in a report.
 #'
 #' @param df dataframe
 #' @param new_names (optional) a character vector of labels to replace the
 #' column names with as necessary (qs)
 #'
-#' @return a pretty tabyl
+#' @return a pretty [janitor::tabyl()] table
 #' @export
-#'
 create.summary.table <- function(df, new_names = NULL) {
-  summary.table <- df %>% map(~ tabyl(.x))
+  summary.table <- df %>% purrr::map(~ janitor::tabyl(.x))
   if(!is.null(new_names)){
     for(i in 1:length(summary.table)) {
       names(summary.table[[i]])[1] <- new_names[i]
     }
   }
   out <- summary.table %>%
-    adorn_totals("row") %>%
-    adorn_pct_formatting(digits = 2, rounding = "half up")
+    janitor::adorn_totals("row") %>%
+    janitor::adorn_pct_formatting(digits = 2, rounding = "half up")
   return(out)
-}
-
-#' quick_summary
-#'
-#' @param df the dataframe
-#' @param variable the var
-#' @param desc logical. default TRUE
-#'
-#' @return summarised df
-#' @export
-#'
-quick_summary <- function(df, variable, desc = TRUE) {
-  out <- df %>%
-    group_by({{variable}}) %>%
-    summarise(n = n())
-  if(isTRUE(desc)){
-    return(arrange(out, desc(n)))
-  } else {
-    return(arrange(out, n))
-  }
-}
-
-
-# Convert Chapters to Articles --------------------------------------------
-
-#' Make Article from Chapter
-#'
-#' @param chapter chapter
-#'
-#' @export
-#'
-make_article <- function(chapter){
-
-  text <- readLines(here::here(chapter)) %>%
-    # up one header level
-    stringr::str_replace_all("subsection", "section") %>%
-    # inspect for chapter refs
-    #.[doc %>% str_detect("(C|c)hapter")] %>%
-    # change chapter refs
-    stringr::str_replace_all("this chapter", "this paper") %>%
-    stringr::str_replace_all("This chapter", "This paper") %>%
-    stringr::str_replace_all("(In the |The) previous chapter(s|)", "Elsewhere") %>%
-    stringr::str_replace_all("(in )the previous chapter(s|)", "elsewhere") %>%
-    stringr::str_replace_all("Chapter .ref", "\\\\citet")
-
-  # save article version of tex file
-  writeLines(text, article)
-
-  # compile tex
-  tinytex::xelatex(article)
-
-  # YAML: ####
-
-  # ---
-  # knit: ( function(input, ...){
-  #         rmarkdown::render(input)
-  #
-  #         make_article(
-  #           paste0(xfun::sans_ext(input), '.tex')
-  #           )
-  #         }
-  #       )
-  # title: The Blah Blah Blha
-  # ---
-
 }

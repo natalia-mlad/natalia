@@ -2,7 +2,8 @@
 % Please edit documentation in R/ds-transform.R
 \name{polytomize_data}
 \alias{polytomize_data}
-\title{polytomize data to demo ordinal models}
+\title{Polytomize Data
+polytomize data to, for example, demo ordinal models}
 \usage{
 polytomize_data(df, thresholds)
 }
@@ -14,5 +15,6 @@ category thresholds; provide one fewer than the required number
 of categories (e.g., c(-0.5, 1) for three categories)}
 }
 \description{
-polytomize data to demo ordinal models
+Polytomize Data
+polytomize data to, for example, demo ordinal models
 }

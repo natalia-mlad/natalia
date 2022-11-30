@@ -2,18 +2,18 @@
 % Please edit documentation in R/ds-tidy.R
 \name{is.count}
 \alias{is.count}
-\title{is.count}
+\title{check if count}
 \usage{
 is.count(x, tol = .Machine$double.eps^0.5)
 }
 \arguments{
-\item{x}{x}
+\item{x}{a vector}
 
-\item{tol}{tol}
+\item{tol}{tolerance (e.g., 0.000000015); is .Machine$double.eps^0.5 by default}
 }
 \value{
-T/F
+logical value (TRUE/FALSE)
 }
 \description{
-is.count
+check if count
 }
