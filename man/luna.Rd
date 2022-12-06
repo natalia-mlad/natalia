@@ -3,14 +3,14 @@
 \name{luna}
 \alias{luna}
 \title{luna
-alias for length(unique(na.omit(x)))}
+alias for \code{length(unique(na.omit(x)))}}
 \usage{
 luna(x)
 }
 \arguments{
-\item{x}{x}
+\item{x}{a vector}
 }
 \description{
 luna
-alias for length(unique(na.omit(x)))
+alias for \code{length(unique(na.omit(x)))}
 }

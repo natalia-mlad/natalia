@@ -2,18 +2,20 @@
 % Please edit documentation in R/ds-transform.R
 \name{nozero}
 \alias{nozero}
-\title{removes leading zero before decimals and rounds number to two decimals (by default)}
+\title{nozero
+Removes leading zero before decimals and rounds number to two decimals (by default)}
 \usage{
 nozero(x, k = 2)
 }
 \arguments{
 \item{x}{numeric vector}
 
-\item{k}{number of decimals}
+\item{k}{number of decimals (2 by default)}
 }
 \value{
 character vector
 }
 \description{
-removes leading zero before decimals and rounds number to two decimals (by default)
+nozero
+Removes leading zero before decimals and rounds number to two decimals (by default)
 }

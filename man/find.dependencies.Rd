@@ -2,15 +2,15 @@
 % Please edit documentation in R/utilities.R
 \name{find.dependencies}
 \alias{find.dependencies}
-\title{find function dependencies}
+\title{find a function's dependencies}
 \usage{
-find.dependencies(e, merge = F)
+find.dependencies(e, merge = FALSE)
 }
 \arguments{
-\item{e}{expression}
+\item{e}{an expression}
 
-\item{merge}{TF}
+\item{merge}{logical; FALSE by default; passed onto \link[codetools:findGlobals]{codetools::findGlobals}}
 }
 \description{
-find function dependencies
+find a function's dependencies
 }

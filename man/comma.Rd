@@ -2,13 +2,18 @@
 % Please edit documentation in R/ds-transform.R
 \name{comma}
 \alias{comma}
-\title{comma}
+\title{Format a long number with the comma(s)}
 \usage{
-comma(x)
+comma(x, digits = 2)
 }
 \arguments{
-\item{x}{x}
+\item{x}{the number (or vector of numbers) to be formatted}
+
+\item{digits}{how many significant digits are to be used; 2 by default. see \code{\link[base:format]{base::format()}}.}
+}
+\value{
+a character (or vector of characters)
 }
 \description{
-comma
+Format a long number with the comma(s)
 }

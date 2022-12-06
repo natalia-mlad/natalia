@@ -60,39 +60,78 @@ change_range_simple <- function(data, col_names, min = 0, max = 100) {
   return(data)
 }
 
+
+#' Letters to Numbers
+#' Takes a character vector of letters from the Roman alphabet
+#' and transforms them into their numeric equivalent value.
+#' The case (lower vs upper) is irrelevant.
+#' Returns `NA`, if the letter is not part of the Roman alphabet.
+#' Useful little tool for basic cipher challenges.
+#'
+#' @param x a character vector
+#' @return interger vector
+#' @export
+#'
+#' @examples
+#' letters_to_numbers("a")
+#' letters_to_numbers(c("p", "n"))
+letters_to_numbers <- function(x) {
+  # stopifnot(length(x) > 0)
+  stopifnot(is.character(x))
+  letter <- tolower(x)
+  myLetters <- letters[1:26]
+  return(match(letter, myLetters))
+}
+
+
 #----Formatting----
-#' comma
-#' @param x x
+#' Format a long number with the comma(s)
+#' @param x the number (or vector of numbers) to be formatted
+#' @param digits how many significant digits are to be used; 2 by default. see [base::format()].
+#' @returns a character (or vector of characters)
 #' @export
-comma <- function(x) {
-  format(x, digits = 2, big.mark = ",")
+comma <- function(x, digits = 2) {
+  if(!is.numeric(x)) x <- as.numeric(x)
+  if(is.na(x)) stop("Please provide a number to be formatted.")
+  format(x, digits = digits, big.mark = ",")
 }
 
-#' capwords
-#' @param s string
-#' @param strict TF
+#' Capitalise the first letter of words in a string
+#' @param x string
+#' @param strict logical; FALSE by default. If TRUE, makes all the letters lowercase first before capitalising.
 #' @export
-capwords <- function(s, strict = FALSE) {
-  cap <- function(s) paste(toupper(substring(s, 1, 1)),
-                           {s <- substring(s, 2); if(strict) tolower(s) else s},
-                           sep = "", collapse = " " )
-  sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
+capwords <- function(x, strict = FALSE) {
+  stopifnot(is.character(x))
+  stopifnot(length(x) == 1) #TODO: make it so it works with character vectors
+  cap <- function(x) {
+    paste(toupper(substring(x, 1, 1)),
+          {x <- substring(x, 2); if(strict) tolower(x) else x},
+          sep = "", collapse = " ")
+  }
+  sapply(strsplit(x, split = " "), cap, USE.NAMES = !is.null(names(x)))
 }
 
-#' removes leading zero before decimals and rounds number to two decimals (by default)
+#' nozero
+#' Removes leading zero before decimals and rounds number to two decimals (by default)
 #' @param x numeric vector
-#' @param k number of decimals
+#' @param k number of decimals (2 by default)
 #' @returns character vector
 #' @export
 nozero <- function(x, k = 2) {
+  if(!is.numeric(x)) x <- as.numeric(x)
+  if(is.na(x)) stop("Please provide a number to be formatted.")
   sub('^(-)?0[.]', '\\1.', round(x, k))
   # sub('^(-)?0[.]', '\\1.', format(round(x, k), nsmall = k))
 }
 
-#' formats numbers to no more or less than two decimals
+#' zero
+#' Rounds to two decimal places (by default) and adds trailing zero(es) which are normally omitted
 #' @param x x
-#' @param k number of decimals
+#' @param k number of decimals (2 by default)
+#' @returns character vector
 #' @export
 zero <- function(x, k = 2) {
+  if(!is.numeric(x)) x <- as.numeric(x)
+  if(is.na(x)) stop("Please provide a number to be formatted.")
   format(round(x, k), nsmall = k)
 }

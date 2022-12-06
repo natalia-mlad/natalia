@@ -2,15 +2,15 @@
 % Please edit documentation in R/ds-transform.R
 \name{capwords}
 \alias{capwords}
-\title{capwords}
+\title{Capitalise the first letter of words in a string}
 \usage{
-capwords(s, strict = FALSE)
+capwords(x, strict = FALSE)
 }
 \arguments{
-\item{s}{string}
+\item{x}{string}
 
-\item{strict}{TF}
+\item{strict}{logical; FALSE by default. If TRUE, makes all the letters lowercase first before capitalising.}
 }
 \description{
-capwords
+Capitalise the first letter of words in a string
 }

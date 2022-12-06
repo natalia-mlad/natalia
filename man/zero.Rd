@@ -2,15 +2,20 @@
 % Please edit documentation in R/ds-transform.R
 \name{zero}
 \alias{zero}
-\title{formats numbers to no more or less than two decimals}
+\title{zero
+Rounds to two decimal places (by default) and adds trailing zero(es) which are normally omitted}
 \usage{
 zero(x, k = 2)
 }
 \arguments{
 \item{x}{x}
 
-\item{k}{number of decimals}
+\item{k}{number of decimals (2 by default)}
+}
+\value{
+character vector
 }
 \description{
-formats numbers to no more or less than two decimals
+zero
+Rounds to two decimal places (by default) and adds trailing zero(es) which are normally omitted
 }

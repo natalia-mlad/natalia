@@ -3,14 +3,14 @@
 \name{suna}
 \alias{suna}
 \title{suna
-alias for sort(unique(na.omit(x)))}
+alias for \code{sort(unique(na.omit(x)))}}
 \usage{
 suna(x)
 }
 \arguments{
-\item{x}{x}
+\item{x}{a vector}
 }
 \description{
 suna
-alias for sort(unique(na.omit(x)))
+alias for \code{sort(unique(na.omit(x)))}
 }

@@ -7,10 +7,8 @@
 embody.expr(expr)
 }
 \arguments{
-\item{expr}{expr}
+\item{expr}{an expression}
 }
 \description{
-notes:
-env <- list(\code{~} = identity)
-body(e) <- eval(call("substitute", body(e), env), envir = baseenv())
+embody expression for a function
 }

@@ -2,10 +2,20 @@
 % Please edit documentation in R/utilities.R
 \name{unattach_all}
 \alias{unattach_all}
-\title{unattach_all}
+\title{Unattach All Packages
+Detaches all packages, except for the base packages \code{base} and \code{utils}.
+It is highly recommended to not detach these.}
 \usage{
-unattach_all()
+unattach_all(base_keep = c("base", "utils"))
+}
+\arguments{
+\item{base_keep}{character vector of the base packages to not detach; keeps \code{base} and \code{utils} by default.}
+}
+\value{
+\code{sessionInfo()} invisibly
 }
 \description{
-unattach_all
+Unattach All Packages
+Detaches all packages, except for the base packages \code{base} and \code{utils}.
+It is highly recommended to not detach these.
 }

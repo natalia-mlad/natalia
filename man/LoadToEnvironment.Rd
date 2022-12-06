@@ -2,21 +2,24 @@
 % Please edit documentation in R/utilities.R
 \name{LoadToEnvironment}
 \alias{LoadToEnvironment}
-\title{Load data to a separate environment}
+\title{Load data to a separate environment
+Useful for having a peak of the objects in an .RData file and only importing a select few.}
 \usage{
 LoadToEnvironment(RData, env = new.env())
 }
 \arguments{
 \item{RData}{path for the .RData file}
 
-\item{env}{new.env}
+\item{env}{the environment to load to; creates a new one by default}
 }
 \description{
 Load data to a separate environment
+Useful for having a peak of the objects in an .RData file and only importing a select few.
 }
 \examples{
-if(FALSE) {
-march2021.data <- LoadToEnvironment("March 2021.RData")
-dataset <- march2021.data$dataset
+\dontrun{
+march2021 <- LoadToEnvironment("March 2021.RData")
+dataset <- march2021$dataset
+rm(march2021)
 }
 }

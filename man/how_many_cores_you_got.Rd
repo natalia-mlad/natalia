@@ -2,10 +2,12 @@
 % Please edit documentation in R/utilities.R
 \name{how_many_cores_you_got}
 \alias{how_many_cores_you_got}
-\title{nCores}
+\title{How many cores you got? A lot!
+Shortcut for finding the number of cores for parallel computing.}
 \usage{
 how_many_cores_you_got()
 }
 \description{
-nCores
+How many cores you got? A lot!
+Shortcut for finding the number of cores for parallel computing.
 }
