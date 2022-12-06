@@ -13,11 +13,11 @@ copy_table(x, row.names = TRUE, col.names = TRUE, clip_size = 2^14, ...)
 
 \item{col.names}{copy the column names? TRUE by default}
 
-\item{...}{dots argument passed on to \code{\link[utils:write.table]{utils::write.table()}}}
-
-\item{clipboard_size}{the size limit of the clipboard (in Kb); \code{2^14} by default.
+\item{clip_size}{the size limit of the clipboard (in Kb); \code{2^14} by default.
 This would only need to be increased if the \code{object.size(x)/1024} exceeds this default.
 Please be mindful of the total memory on your machine.}
+
+\item{...}{dots argument passed on to \code{\link[utils:write.table]{utils::write.table()}}}
 }
 \description{
 Copy a dataframe or matrix to clipboard

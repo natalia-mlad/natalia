@@ -19,7 +19,7 @@ suna <- function(x) {
 #' @param x the dataframe or matrix
 #' @param row.names copy the row names? TRUE by default
 #' @param col.names copy the column names? TRUE by default
-#' @param clipboard_size the size limit of the clipboard (in Kb); `2^14` by default.
+#' @param clip_size the size limit of the clipboard (in Kb); `2^14` by default.
 #' This would only need to be increased if the `object.size(x)/1024` exceeds this default.
 #' Please be mindful of the total memory on your machine.
 #' @param ... dots argument passed on to [utils::write.table()]
