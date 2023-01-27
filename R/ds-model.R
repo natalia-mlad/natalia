@@ -39,3 +39,41 @@ glmnet_cor <- function(x1, y, x2 = NULL, prop = .67, alpha = .05, lambda.type = 
     stats::predict(x2[-s, ], s = lambda.type) %>%
     stats::cor(y[-s])
 }
+
+
+# Network -----------------------------------------------------------------
+#' Find Net Bridges
+#' @param net network graph (class ‘igraph’)
+#' @export
+bridges <- function(net) {
+  # TODO: create a purrr version
+  bridges <- c() # empty vector to store bridge names in
+  number_components <- length(igraph::decompose.graph(net)) # grab the number of components in the original raph
+  for (i in 1:length(igraph::E(net))) { # begin a loop through all of the edges
+    net_sub <- igraph::delete.edges(net, i) # delete the edge in question
+    if(length(igraph::decompose.graph(net_sub) ) > number_components){ # if the number of components has increased
+      bridges <- c(i, bridges)  # save this edge as a bridge
+    }
+  }
+  return(bridges) # return the set of bridges
+}
+
+#' Find Tie Ranges
+#' @param net network graph (class ‘igraph’)
+#' @export
+tie_range <- function(net) {
+  # TODO: create a purrr version
+  tie_ranges <- c() # empty vector to save ranges
+  for (i in 1:length(igraph::E(net))) { # loop through edges
+    incident_vertices <- igraph::ends(net, i) # which nodes are incident to the edge in quetion
+    net_sub <- igraph::delete.edges(net, i) # delete the edge
+    updated_distance <- igraph::distances( # evaluate the distance for the previously connected nodes
+      net_sub,
+      v = incident_vertices[1, 1],
+      to = incident_vertices[1, 2],
+      mode = "all"
+    )
+    tie_ranges <- c(tie_ranges, updated_distance) # save the result
+  }
+  return(tie_ranges) # return the resulting tie ranges
+}

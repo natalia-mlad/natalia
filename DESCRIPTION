@@ -3,7 +3,7 @@ Title: A Package to Support Natalia in her Data Science Shenanigans
 Version: 0.0.0.1
 Authors@R: 
     person("Natalia", "Mladentseva", , "natashka.ml@gmail.com", role = c("aut", "cre"))
-Description: Bits & Bobs.
+Description: An eclectic collection of personal functions, roughly themed around Data Science
 License: file LICENSE
 URL: https://github.com/natalia-mlad/natalia
 BugReports: https://github.com/natalia-mlad/natalia/issues

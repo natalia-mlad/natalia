@@ -10,7 +10,7 @@ P__disp <- function(x) {
 }
 
 #' invlogit
-#' see arm::invlogit
+#' see [arm::invlogit]
 #' @param x x
 invlogit <- function(x) {
   1 / (1 + exp(-x))

@@ -1,5 +1,5 @@
 #' get_todoist_tasks
-#' @return tasks in a tibble with a bunch of info
+#' @return tasks in a tibble with a bunch of information
 #' @export
 get_todoist_tasks <- function() {
   objects <- rtodoist::get_all()
