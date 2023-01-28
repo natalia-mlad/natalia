@@ -1,7 +1,6 @@
 ---
 output:
   github_document: default
-  html_notebook: default
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -21,50 +20,62 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The goal of natalia is to ...
+The goal of natalia is to support me (Natalia) with my various Data Science tasks.
+In practice, this is just an eclectic collection of personal functions that I keep on coming back to.
+In the future, some of the functions might get migrated to their own niche packages where I'm sure they'll feel more at home!
 
 <!--# TODO: add a hex sticker to left of this intro {hexSticker} -->
 
-## Project Background
-
 ## Installation
 
-You can install the released version of natalia from [CRAN](https://CRAN.R-project.org) with:
+You can install `natalia` from github with:
 
 ``` r
 # install.packages("remotes")
 # remotes::install_github("natalia-mlad/natalia")
 ```
 
-## Example//Use package {natalia}
+## Examples
 
-(maybe further broken down by usecases)
+<!-- (maybe further broken down by usecases) -->
 
-This is a basic example which shows you how to solve a common problem:
+Here are some basic examples of how to use the functions found in this package:
 
-```{r example, eval=FALSE, include=FALSE}
+```{r example}
 library(natalia)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+- ID ordinal variables from numeric ones
+The following example is based on a cut-off point of 5, the max number of levels allowed for the variable before it stops being considered ordinal and becomes continuous.
 
-```{r cars, eval=FALSE, include=FALSE}
-summary(cars)
+```{r}
+isOrd(mtcars, n = 5)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
+- Polytomize item data
+For instance, you could simplify Likert item data into three categories for reporting or to use in further modeling.
 
-You can also embed plots, for example:
-
-```{r pressure, eval=FALSE, include=FALSE}
-plot(pressure)
+```{r}
+responses <- data.frame(
+  item1 = sample(1:7, 50, replace = TRUE),
+  item2 = sample(1:7, 50, replace = TRUE),
+  item3 = sample(1:7, 50, replace = TRUE)
+)
+head(responses)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
 
-## Vignette
+```{r}
+polytomize_data(responses, thresholds = c(3,4)) %>%
+  head()
+```
 
-## Further Information
+- Scrape duckduckgo search results
+This is useful for comparing top results and their sentiment across search enginges.
 
-For more information please consult the xyz repo/Sharepoint etc.
+```{r, cache=TRUE}
+duckduckgo(c("personal", "data", "privacy")) %>%
+  head()
+```
+
+And so much more! (over 50 functions)

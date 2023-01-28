@@ -39,7 +39,7 @@ force_bind <- function(df1, df2) {
 
 # Identify ----------------------------------------------------------------
 
-#' Identify ordinary variables
+#' Identify ordinal variables
 #'
 #' @param data dataset
 #' @param n max number of levels allowed for the variable before it stops being
