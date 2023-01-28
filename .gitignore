@@ -6,5 +6,6 @@
 /dev/
 /history/
 /data-raw/
+/README_cache/
 sessionInfoLog
 docs
