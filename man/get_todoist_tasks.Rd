@@ -7,7 +7,7 @@
 get_todoist_tasks()
 }
 \value{
-tasks in a tibble with a bunch of info
+tasks in a tibble with a bunch of information
 }
 \description{
 get_todoist_tasks

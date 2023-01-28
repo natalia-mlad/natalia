@@ -6,7 +6,7 @@
 \alias{natalia-package}
 \title{natalia: A Package to Support Natalia in her Data Science Shenanigans}
 \description{
-Bits & Bobs.
+An eclectic collection of personal functions, roughly themed around Data Science
 }
 \seealso{
 Useful links:

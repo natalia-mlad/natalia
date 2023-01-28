@@ -3,7 +3,7 @@
 \name{invlogit}
 \alias{invlogit}
 \title{invlogit
-see arm::invlogit}
+see \link[arm:invlogit]{arm::invlogit}}
 \usage{
 invlogit(x)
 }
@@ -12,5 +12,5 @@ invlogit(x)
 }
 \description{
 invlogit
-see arm::invlogit
+see \link[arm:invlogit]{arm::invlogit}
 }

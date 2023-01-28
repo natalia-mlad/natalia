@@ -2,7 +2,7 @@
 % Please edit documentation in R/ds-tidy.R
 \name{isOrd}
 \alias{isOrd}
-\title{Identify ordinary variables}
+\title{Identify ordinal variables}
 \usage{
 isOrd(data, n = 7)
 }
@@ -13,5 +13,5 @@ isOrd(data, n = 7)
 considered ordinal and becomes continuous. Default is 7.}
 }
 \description{
-Identify ordinary variables
+Identify ordinal variables
 }
