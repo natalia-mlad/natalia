@@ -7,10 +7,12 @@
 <!-- badges: end -->
 
 The goal of this package is to support me (Natalia) with my various Data
-Science tasks. In practice, this is just an eclectic collection of
-personal functions that I keep on coming back to. In the future, some of
-the functions might get migrated to their own niche packages where I’m
-sure they’ll feel more at home!
+Science tasks.
+
+In practice, this is just an eclectic collection of personal functions
+that I keep on coming back to. In the future, some of the functions
+might get migrated to their own niche packages where I’m sure they’ll
+feel more at home!
 
 <!--# TODO: add a hex sticker to left of this intro {hexSticker} -->
 
@@ -58,12 +60,12 @@ responses <- data.frame(
 )
 head(responses)
 #>   item1 item2 item3
-#> 1     3     1     3
-#> 2     5     6     6
-#> 3     7     2     2
-#> 4     5     2     2
-#> 5     2     5     7
-#> 6     1     6     7
+#> 1     1     1     1
+#> 2     4     5     2
+#> 3     7     6     7
+#> 4     7     4     7
+#> 5     4     5     2
+#> 6     4     2     1
 ```
 
 ``` r
@@ -72,11 +74,11 @@ polytomize_data(responses, thresholds = c(3,4)) %>%
 #> [33mi[39m Turning data into 3 categories.
 #>   item1 item2 item3
 #> 1     1     1     1
-#> 2     3     3     3
-#> 3     3     1     1
-#> 4     3     1     1
-#> 5     1     3     3
-#> 6     1     3     3
+#> 2     2     3     1
+#> 3     3     3     3
+#> 4     3     2     3
+#> 5     2     3     1
+#> 6     2     1     1
 ```
 
 -   Scrape duckduckgo search results
