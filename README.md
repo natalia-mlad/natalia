@@ -58,12 +58,12 @@ responses <- data.frame(
 )
 head(responses)
 #>   item1 item2 item3
-#> 1     3     7     6
-#> 2     7     7     1
-#> 3     4     7     7
-#> 4     4     1     6
-#> 5     1     1     6
-#> 6     6     2     5
+#> 1     3     1     3
+#> 2     5     6     6
+#> 3     7     2     2
+#> 4     5     2     2
+#> 5     2     5     7
+#> 6     1     6     7
 ```
 
 ``` r
@@ -71,12 +71,12 @@ polytomize_data(responses, thresholds = c(3,4)) %>%
   head()
 #> [33mi[39m Turning data into 3 categories.
 #>   item1 item2 item3
-#> 1     1     3     3
-#> 2     3     3     1
-#> 3     2     3     3
-#> 4     2     1     3
-#> 5     1     1     3
-#> 6     3     1     3
+#> 1     1     1     1
+#> 2     3     3     3
+#> 3     3     1     1
+#> 4     3     1     1
+#> 5     1     3     3
+#> 6     1     3     3
 ```
 
 -   Scrape duckduckgo search results
@@ -95,4 +95,4 @@ duckduckgo(c("personal", "data", "privacy")) %>%
 #> [6] "What counts as personal data? - Which?\nwww.which.co.uk/consumer-rights/advice/what-counts-as-personal-data-a4T2s2Y2ffXd\nThe EU-wide rules in the Data Protection Act 2018 (GDPR) provides the legal definition of what counts as personal data in the UK. Personal data includes an identifier like: your name. an identification number, for example your National Insurance or passport number. your location data, for example your home address or mobile phone GPS data."
 ```
 
-And so much more! (over 50 functions)
+And so much more! (over 40 functions)

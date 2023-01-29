@@ -71,6 +71,7 @@ corr_simple <- function(data, sig = 0.5, ...) {
   print(dplyr::rename(corr, "Corr" = "Freq")) # print table
   # turn corr back into matrix in order to plot with corrplot
   mtx_corr <- reshape2::acast(corr, Var1 ~ Var2, value.var = "Freq")
+  # TODO: find alt to [reshape2::acast] to remove that dependency
   # plot correlations visually
   corrplot::corrplot(
     mtx_corr,

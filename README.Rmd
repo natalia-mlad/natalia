@@ -81,4 +81,4 @@ duckduckgo(c("personal", "data", "privacy")) %>%
   head()
 ```
 
-And so much more! (over 50 functions)
+And so much more! (over 40 functions)
