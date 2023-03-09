@@ -22,8 +22,7 @@ knitr::opts_chunk$set(
 
 The goal of this package is to support me with my various Data Science tasks.
 
-In practice, this is just an eclectic collection of personal functions that I keep on coming back to.
-In the future, some of the functions might get migrated to their own niche packages where I'm sure they'll feel more at home!
+In practice, this is just an eclectic collection of personal functions that I keep on coming back to. In the future, some of the functions might get migrated to their own niche packages where I'm sure they'll feel more at home!
 
 <!--# TODO: add a hex sticker to left of this intro {hexSticker} -->
 
@@ -46,7 +45,7 @@ Here are some basic examples of how to use the functions found in this package:
 library(natalia)
 ```
 
-- ID ordinal variables from numeric ones
+-   ID ordinal variables from numeric ones
 
 The following example is based on a cut-off point of 5, the max number of levels allowed for the variable before it stops being considered ordinal and becomes continuous.
 
@@ -54,7 +53,7 @@ The following example is based on a cut-off point of 5, the max number of levels
 isOrd(mtcars, n = 5)
 ```
 
-- Polytomize item data
+-   Polytomize item data
 
 For instance, you could simplify Likert item data into three categories for reporting or to use in further modeling.
 
@@ -67,19 +66,19 @@ responses <- data.frame(
 head(responses)
 ```
 
-
 ```{r}
 polytomize_data(responses, thresholds = c(3,4)) %>%
   head()
 ```
 
-- Scrape duckduckgo search results
+-   Scrape duckduckgo search results
 
-This is useful for comparing top results and their sentiment across search enginges.
+This is useful for comparing top results and their sentiments across queries or search enginges.
 
 ```{r, cache=TRUE}
-duckduckgo(c("personal", "data", "privacy")) %>%
-  head()
+duckduckgo("LGBT") %>% head()
+
+duckduckgo(c("LGBT", "religion")) %>% head()
 ```
 
 And so much more! (over 40 functions)

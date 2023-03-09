@@ -60,12 +60,12 @@ responses <- data.frame(
 )
 head(responses)
 #>   item1 item2 item3
-#> 1     5     7     6
-#> 2     5     5     4
-#> 3     1     1     2
-#> 4     3     4     6
-#> 5     3     5     6
-#> 6     6     2     3
+#> 1     6     3     6
+#> 2     4     1     1
+#> 3     3     7     2
+#> 4     5     5     6
+#> 5     1     4     1
+#> 6     6     3     5
 ```
 
 ``` r
@@ -73,28 +73,35 @@ polytomize_data(responses, thresholds = c(3,4)) %>%
   head()
 #> [33mi[39m Turning data into 3 categories.
 #>   item1 item2 item3
-#> 1     3     3     3
-#> 2     3     3     2
-#> 3     1     1     1
-#> 4     1     2     3
-#> 5     1     3     3
-#> 6     3     1     1
+#> 1     3     1     3
+#> 2     2     1     1
+#> 3     1     3     1
+#> 4     3     3     3
+#> 5     1     2     1
+#> 6     3     1     3
 ```
 
 -   Scrape duckduckgo search results
 
-This is useful for comparing top results and their sentiment across
-search enginges.
+This is useful for comparing top results and their sentiments across
+queries or search enginges.
 
 ``` r
-duckduckgo(c("personal", "data", "privacy")) %>%
-  head()
-#> [1] "What is personal data? | ICO - Information Commissioner's Office\nico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/what-is-personal-data/what-is-personal-data/\nThis means personal data has to be information that relates to an individual. That individual must be identified or identifiable either directly or indirectly from one or more identifiers or from factors specific to the individual. The UK GDPR covers the processing of personal data in two ways:"                                           
-#> [2] "Data protection: The Data Protection Act - GOV.UK\nwww.gov.uk/data-protection\nThe Data Protection Act 2018 is the UK's implementation of the General Data Protection Regulation (GDPR). Everyone responsible for using personal data has to follow strict rules called..."                                                                                                                                                                                                                                                                                                   
-#> [3] "What is personal data? | ICO - Information Commissioner's Office\nico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/\nPersonal data may also include special categories of personal data or criminal conviction and offences data. These are considered to be more sensitive and you may only process them in more limited circumstances. Pseudonymised data can help reduce privacy risks by making it more difficult to identify individuals, but it is still personal data."
-#> [4] "What is data privacy? | Privacy definition | Cloudflare\nwww.cloudflare.com/learning/privacy/what-is-data-privacy/\nData privacy generally means the ability of a person to determine for themselves when, how, and to what extent personal information about them is shared with or communicated to others. This personal information can be one's name, location, contact information, or online or real-world behavior."                                                                                                                                                   
-#> [5] "Privacy - data.gov.uk\nwww.data.gov.uk/privacy\nThe data controller for GDS is the Cabinet Office — a data controller determines how and why personal data is processed. For more information read the Cabinet Office's entry in the Data Protection Public ... Children's privacy protection. We understand the importance of protecting children's privacy online. Our service is not designed ..."                                                                                                                                                                         
-#> [6] "What counts as personal data? - Which?\nwww.which.co.uk/consumer-rights/advice/what-counts-as-personal-data-a4T2s2Y2ffXd\nThe EU-wide rules in the Data Protection Act 2018 (GDPR) provides the legal definition of what counts as personal data in the UK. Personal data includes an identifier like: your name. an identification number, for example your National Insurance or passport number. your location data, for example your home address or mobile phone GPS data."
+duckduckgo("LGBT") %>% head()
+#> [1] "LGBT - Wikipedia\nen.wikipedia.org/wiki/LGBT\nLGBT is an initialism that stands for lesbian, gay, bisexual, and transgender.In use since the 1990s, the initialism, as well as some of its common variants, functions as an umbrella term for sexuality and gender identity.. The LGBT term is an adaptation of the initialism LGB, which began to replace the term gay (or gay and lesbian) in reference to the broader LGBT community beginning in the ..."                           
+#> [2] "LGBT Foundation - Home\nlgbt.foundation\nLGBT Foundation is a national charity delivering advice, support and information services to lesbian, gay, bisexual and trans (LGBT) communities. Equality Wins > Find out more about our campaign to ensure all LGBT people feel welcome, heard and represented. Get support >"                                                                                                                                                               
+#> [3] "About LGBTQIA+ and mental health - Mind\nwww.mind.org.uk/information-support/tips-for-everyday-living/lgbtqia-mental-health/about-lgbtqia-mental-health/\nBut those of us who identify as LGBTQIA+ are more likely to develop problems like: low self-esteem depression anxiety, including social anxiety eating problems misusing drugs and alcohol self-harm suicidal feelings other mental health problems. Being LGBTQIA+ does not cause these problems."                           
+#> [4] "We know what LGBT means but here's what LGBTQQIAAP stands for\nwww.bbc.co.uk/news/newsbeat-33278165\nWe know what LGBT stands for but there are many other terms people now identity with, giving us the acronym LGBTQQIAAP. The 10 terms cover the different ways people define their gender and..."                                                                                                                                                                                   
+#> [5] "LGBTQ+ facts and figures | Stonewall\nwww.stonewall.org.uk/lgbtq-facts-and-figures\nAlmost one in five LGBT people (18 per cent) have experienced homelessness at some point in their lives. Half of black, Asian and minority ethnic LGBT people (51 per cent) have experienced discrimination or poor treatment from others in their local LGBT community because of their ethnicity."                                                                                                
+#> [6] "What Does LGBT Mean? Know the Basics. | Youth Engaged 4 Change\nengage.youth.gov/resources/what-does-lgbt-mean-know-basics\nThe term \" LGBT \" technically stands for lesbian, gay, bisexual, and transgender. It includes both sexual orientation (LGB) and gender identity (T). But, it's sometimes used as an umbrella term for anyone who does not identify as straight (heterosexual) or cisgender, so it's important to know other sexual and gender identities the term covers."
+
+duckduckgo(c("LGBT", "religion")) %>% head()
+#> [1] "Religion and LGBT people - Wikipedia\nen.wikipedia.org/wiki/Religion_and_LGBT_people\nReligious views of LGBT people. According to a 2006 Australian survey, LGBT Australians, compared to the general Australian population, were much more likely to have no religious affiliation, much less likely to be affiliated with a Christian denomination, and more likely to be affiliated with a non-Christian religion.The distribution of religions that LGBT Australians were raised in, however ..."
+#> [2] "What different religions say about the LGBT+ community\nnewrationalist.com/what-different-religions-say-about-the-lgbt-community/\nLGBT continues to be a contentious matter for several major religions of the world. A few religions have stringent preaching against homosexual and bisexual activities. Some religions are relatively less stringent. Very few religions have warmly welcomed the LGBT community around the world."                                                               
+#> [3] "Being LGBTQ+ and Religious | LGBT HERO - the national health and ...\nwww.lgbthero.org.uk/being-lgbtq-and-religious\nThe myth that all people within the community have to be nonreligious or atheist can be harmful to other LGBTQ+ people who connect very deeply with their religious identity. It is unfortunately not uncommon for religious spaces to shun or reject people after coming out, sometimes forcing LGBTQ+ people out of the space entirely."                                       
+#> [4] "LGBT-affirming religious groups - Wikipedia\nen.wikipedia.org/wiki/LGBT-affirming_religious_groups\nLesbian, gay, bisexual, and transgender ( LGBT) affirming religious groups, otherwise referred to as gay-affirming religious groups, are religious groups that welcome LGBT people as their members, do not consider homosexuality as a sin or negative, and affirm LGBT rights and relationships. They include entire religious denominations, as well as ..."                                   
+#> [5] "LGBT and Religion in the UK | Changing Attitude\nchangingattitude.org.uk/lgbt-and-religion-in-the-uk/\nThe Church of England has a more mixed position on LGBT rights. The Church currently allows gay men and women, and trans men and women to serve in the clergy. Gay priests are allowed to enter into civil partnerships, but they are not allowed to have religious marriage ceremonies."                                                                                                      
+#> [6] "The LGBT Experience With Spiritual, Religious, And Existential Issues\nwww.anxiety.org/lgbt-religion-faith-anxiety\nReligion is a Valuable Method for Coping with Stressors Religion's role in coping with the stressors LGBT people face is a complex one. For their heterosexual, cisgender counterparts, religious and spiritual beliefs and practices can provide strong support during difficult times."
 ```
 
 And so much more! (over 40 functions)
