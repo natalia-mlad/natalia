@@ -192,10 +192,13 @@ fuzzy_join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
     by <- by[c("x", "y")]
   }
   else if (is.character(by)) {
-    by_x <- names(by)
-    by_y <- unname(by)
-    by_x[by_x == ""] <- by_y[by_x == ""]
-    by <- list(x = by_x, y = by_y)
+    by <- list(x = by, y = by)
+    # The following only works for named character vectors, but not normal character (which is the more common need):
+    # TODO: figure out how dplyr's *_join functions handle named/unnamed vectors and re-implement this
+    # by_x <- names(by)
+    # by_y <- unname(by)
+    # by_x[by_x == ""] <- by_y[by_x == ""]
+    # by <- list(x = by_x, y = by_y)
   } else {
     stop("by must be a (named) character vector, list, or NULL")
     # abort("by must be a (named) character vector, list, or NULL")
@@ -248,4 +251,9 @@ fuzzy_join <- function(df.x, df.y, by = NULL, max.distance = 0.3,
     )
   )))
   return(df.x)
+  # New version would be something like:
+  # output <- inner_join(df.x, df.y, by = c("JOIN" = y_by))
+  # return(output)
+  # Except I just need to figure out how to make the join type an option (rlang? do.call?)
+  # + pick a sensible default based on previous code (TODO)
 }
